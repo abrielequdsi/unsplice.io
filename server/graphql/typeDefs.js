@@ -5,12 +5,14 @@ const typeDefs = gql`
         id: ID!
         email: String!
         password: String!
-        profile: Profile
-        program: [Program]
-    }
-    type Profile {
         firstName: String!
         lastName: String!
+        institution: String!
+        role: String!
+        socialLinks: SocialLinks
+        program: [Program]
+    }
+    type SocialLinks {
         instagram: String
         github: String
         linkedin: String
@@ -19,6 +21,7 @@ const typeDefs = gql`
     type Program {
         id: ID!
         name: String!
+        programCode: String!
         desc: String!
         modules: [Module]
         createdAt: String!
@@ -26,6 +29,7 @@ const typeDefs = gql`
     type Module {
         id: ID!
         name: String!
+        moduleCode: String!
         desc: String!
         progress: Int!
         content: [Content]
@@ -33,7 +37,7 @@ const typeDefs = gql`
     }
     type Content {
         id: ID!
-        number: Number!
+        number: Int!
         title: String!
         desc: String!
         completed: Boolean!
@@ -43,12 +47,15 @@ const typeDefs = gql`
         createdAt: String!
     }
     type VideoContent {
+        title: String!
         link: String!
     }
     type TextContent {
+        title: String!
         text: String!
     }
     type IdeContent {
+        title: String!
         answer: String!
         question: String!
         testCase: [TestCase!]
@@ -59,12 +66,14 @@ const typeDefs = gql`
         output: String!
     }
     type Query {
-        getUser(email: String!): User
-        getProgram(id: ID!): Program
+        getProgram(id: ID!): Program!
+        getModules: [Module]
         getModule(id: ID!): Module
+        getClassmates: [User]
+        getContent(ID!): Content
     }
     type Mutation {
-        login(username: String!, password: String!) : User!
+        login(email: String!, password: String!): User!
     }
     `;
 
