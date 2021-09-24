@@ -71,7 +71,7 @@ const typeDefs = gql`
     }
     type Query {
         getModuleList(programId: ID!): [Module]
-        getClassmates(programid: ID!): [User] 
+        getClassmates(programCode: String!): [User] 
         getModule(moduleId: ID!): Module
         getContent(contentId: ID!): Content 
     }
