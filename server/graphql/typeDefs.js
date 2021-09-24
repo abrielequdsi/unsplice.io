@@ -10,7 +10,7 @@ const typeDefs = gql`
         institution: String!
         role: String!
         socialLinks: SocialLinks
-        program: [String]
+        programCodes: [String]
     }
     type SocialLinks {
         instagram: String
