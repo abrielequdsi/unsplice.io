@@ -6,8 +6,7 @@ module.exports = {
         getModuleList: async (_, { programId }) => {
             const program = await Program.findById(programId); // ["cs1", "cs2", "cs3"]
 
-            // Find list of modules
-            // where code: 
+            // Find module where code is ["cs1", "cs2", "cs3"]
             const modules = await Module.find({ 
                 moduleCode: {
                     $in: program.moduleCodes
@@ -16,5 +15,9 @@ module.exports = {
 
             return modules
         },
+        getModule: async (_, { moduleId }) => {
+            const module = await Module.findById(moduleId);
+            return module
+        }
     }
 }
