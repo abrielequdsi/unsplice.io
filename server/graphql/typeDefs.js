@@ -27,8 +27,11 @@ const typeDefs = gql`
         createdAt: String!
     }
     type ModuleList {
+        id: ID!
         name: String!
         moduleCode: String!
+        desc: String!
+        progress: Int!
     }
     type Module {
         id: ID!
@@ -36,8 +39,15 @@ const typeDefs = gql`
         moduleCode: String!
         desc: String!
         progress: Int!
-        content: [Content]
+        contents: [ContentThumbnail]
         createdAt: String!
+    }
+    type ContentThumbnail {
+        id: ID!
+        number: Int!
+        title: String!
+        desc: String!
+        completed: Boolean!
     }
     type Content {
         id: ID!
@@ -70,10 +80,10 @@ const typeDefs = gql`
         output: String!
     }
     type Query {
-        getModuleList(programId: ID!): [Module]
+        getModuleList(programId: ID!): [ModuleList]
         getClassmates(programCode: String!): [User] 
         getModule(moduleId: ID!): Module
-        getContent(contentId: ID!): Content 
+        getContent(moduleId: ID!, contentId: ID!): Content
     }
     type Mutation {
         login(email: String!, password: String!): UserAndProgram! 

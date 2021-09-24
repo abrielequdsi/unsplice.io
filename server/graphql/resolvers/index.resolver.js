@@ -1,12 +1,12 @@
 const userResolver = require('./user.resolver')
-const programResolver = require('./program.resolver')
 const moduleResolver = require('./module.resolver')
+const contentResolver = require('./content.resolver')
 
 const resolvers = {
     Query: {
         ...userResolver.Query,
-        ...programResolver.Query,
-        ...moduleResolver.Query
+        ...moduleResolver.Query,
+        ...contentResolver.Query
     },
     Mutation: {
         ...userResolver.Mutation
