@@ -10,7 +10,7 @@ const typeDefs = gql`
         institution: String!
         role: String!
         socialLinks: SocialLinks
-        program: [Program]
+        program: [String]
     }
     type SocialLinks {
         instagram: String
@@ -23,8 +23,12 @@ const typeDefs = gql`
         name: String!
         programCode: String!
         desc: String!
-        modules: [Module]
+        moduleList: [ModuleList]
         createdAt: String!
+    }
+    type ModuleList {
+        name: String!
+        moduleCode: String!
     }
     type Module {
         id: ID!
@@ -66,14 +70,17 @@ const typeDefs = gql`
         output: String!
     }
     type Query {
-        getProgram(programCode: String!): Program! 
-        getModules: [Module]
-        getModule(id: ID!): Module
-        getClassmates(programCode: String!): [User] 
-        getContent(ID!): Content 
+        getModuleList(programId: ID!): [Module]
+        getClassmates(programid: ID!): [User] 
+        getModule(moduleId: ID!): Module
+        getContent(contentId: ID!): Content 
     }
     type Mutation {
-        login(email: String!, password: String!): User! 
+        login(email: String!, password: String!): UserAndProgram! 
+    }
+    type UserAndProgram {
+        userInfo: User!
+        userProgram: [Program!]
     }
     `;
 
