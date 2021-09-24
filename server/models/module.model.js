@@ -1,17 +1,20 @@
 const { model, Schema } = require('mongoose');
 
-const contentSchema = new Schema({
+const contentSchema = {
     number: Number,
     title: String,
     desc: String,
-    completed: boolean,
+    completed: Boolean,
     videoContent: {
-        videoLink: String
+        title: String,
+        link: String
     },
     textContent: {
+        title: String,
         text: String
     },
     ideContent: {
+        title: String,
         answer: String,
         question: String,
         testCase: [
@@ -23,12 +26,13 @@ const contentSchema = new Schema({
         solution: String
     },
     createdAt: String
-})
+}
 
 
 
 const moduleSchema = new Schema({
     name: String,
+    moduleCode: String,
     desc: String,
     progress: Number,
     contents: [contentSchema],
