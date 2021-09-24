@@ -66,14 +66,14 @@ const typeDefs = gql`
         output: String!
     }
     type Query {
-        getProgram(id: ID!): Program!
+        getProgram(programCode: String!): Program! 
         getModules: [Module]
         getModule(id: ID!): Module
-        getClassmates: [User]
-        getContent(ID!): Content
+        getClassmates(programCode: String!): [User] 
+        getContent(ID!): Content 
     }
     type Mutation {
-        login(email: String!, password: String!): User!
+        login(email: String!, password: String!): User! 
     }
     `;
 
