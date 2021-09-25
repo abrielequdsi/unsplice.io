@@ -15,22 +15,13 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+// Components
 import { mainListItems, secondaryListItems } from '../components/listItems';
 import { AppBar } from '../components/AppBar.js'
 import { Drawer } from '../components/Drawer'
+import { Copyright } from '../components/Copyright'
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+
 
 const mdTheme = createTheme();
 
