@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
+import LinearProgress from '@mui/material/LinearProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // Components
 import Copyright from '../components/Copyright'
@@ -19,13 +19,14 @@ import { useMutation, gql } from "@apollo/client";
 const theme = createTheme();
 
 const Login = () => {
+    const [error, setError] = useState(null);
 
-    const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER, {
+    const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(proxy, result) {
             console.log(result)
         },
         onError(err) {
-            console.log(err)
+            setError(err.message);
         },
     })
 
@@ -49,7 +50,7 @@ const Login = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" >
                 <CssBaseline />
                 <Box
                     sx={{
@@ -86,10 +87,15 @@ const Login = () => {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
+                        {loading && (<LinearProgress sx={{ mb: 1 }} />)}
+                        {
+                            (error)
+                            &&
+                            (<Alert severity="error">
+                                {error}
+                            </Alert>)
+
+                        }
                         <Button
                             type="submit"
                             fullWidth
