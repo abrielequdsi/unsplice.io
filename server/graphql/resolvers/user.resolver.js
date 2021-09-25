@@ -1,8 +1,11 @@
 const User = require('../../models/user.model');
 const Program = require('../../models/program.model');
 
+// TODO: Implement Bcrypt
+// TODO: Implement JWT
+
 module.exports = {
-    Query : {
+    Query: {
         getClassmates: async (_, { programCode }) => {
             // fetch classmates
             const classmates = await User.find({ programCodes: programCode })
@@ -11,7 +14,7 @@ module.exports = {
     },
     Mutation: {
         login: async (_, { email, password }, context, info) => {
-            
+
             // Handle user data
             const user = await User.findOne({ email });
             if (!user) {
@@ -21,8 +24,8 @@ module.exports = {
                 throw new Error("Wrong credentials")
             }
             // Handle program data
-            const programInfo = await Program.find({ 
-                programCode:  {
+            const programInfo = await Program.find({
+                programCode: {
                     $in: user.programCodes
                 }
             })
