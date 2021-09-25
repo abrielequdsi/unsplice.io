@@ -12,19 +12,39 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // Components
 import Copyright from '../components/Copyright'
+// Gql
+import { useMutation, gql } from "@apollo/client";
 
 
 const theme = createTheme();
 
 const Login = () => {
+
+    const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER, {
+        update(proxy, result) {
+            console.log(result)
+        },
+        onError(err) {
+            console.log(err)
+        },
+    })
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+        loginUser({
+            variables: {
+                email: data.get('email'),
+                password: data.get('password'),
+            }
+        })
+
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
     };
 
     return (
@@ -85,5 +105,36 @@ const Login = () => {
         </ThemeProvider>
     );
 }
+
+const LOGIN_USER = gql`
+  mutation Login(
+    $email: String!
+    $password: String!
+  ) {
+    login( email: $email, password: $password ) {
+        #Get User Info
+        userInfo {
+            id
+            firstName
+            lastName
+            institution
+            socialLinks {
+                github
+                instagram
+                linkedin
+                website
+            }
+            programCodes
+        }
+        #Get User Program
+        userProgram {
+            id
+            name
+            programCode
+        }
+        
+    }
+  }
+`;
 
 export default Login;
