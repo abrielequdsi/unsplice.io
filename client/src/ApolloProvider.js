@@ -5,6 +5,9 @@ import {
     InMemoryCache,
     ApolloProvider,
 } from "@apollo/client";
+// redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const client = new ApolloClient({
     uri: 'http://localhost:5000',
@@ -14,7 +17,9 @@ const client = new ApolloClient({
 export default (
     <ApolloProvider client={client}>
         <React.StrictMode>
-            <App />
+            <Provider store={store}>
+                <App />
+            </Provider>
         </React.StrictMode>
     </ApolloProvider>
 )

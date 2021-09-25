@@ -14,16 +14,24 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/Copyright'
 // Gql
 import { useMutation, gql } from "@apollo/client";
+// redux
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/actions/user.action'
+
 
 
 const theme = createTheme();
 
-const Login = () => {
+const Login = (props) => {
+    const dispatch = useDispatch();
+
     const [error, setError] = useState(null);
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(proxy, result) {
-            console.log(result)
+            // console.log(result.data.login)
+            dispatch(login(result.data.login))
+            props.history.push('/')
         },
         onError(err) {
             setError(err.message);

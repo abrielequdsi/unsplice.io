@@ -16,13 +16,14 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 // Components
 import { mainListItems, secondaryListItems } from '../components/listItems';
-import { AppBar } from '../components/AppBar.js'
-import { Drawer } from '../components/Drawer'
-import { Copyright } from '../components/Copyright'
+import AppBar from '../components/mui-styled/appBar.js'
+import Drawer from '../components/mui-styled/drawer'
+import Copyright from '../components/Copyright'
 
 const mdTheme = createTheme();
 
 const DashboardContent = () => {
+
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
