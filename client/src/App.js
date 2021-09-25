@@ -1,9 +1,10 @@
-import Button from '@mui/material/Button';
+import Login from './pages/Login.js'
+import Dashboard from './pages/Dashboard.js'
 
 function App() {
   return (
     <div className="App">
-      <Button variant="contained">Hello World</Button>
+      <Dashboard />
     </div>
   );
 }
