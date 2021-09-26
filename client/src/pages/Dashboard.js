@@ -8,21 +8,23 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 // Components
-import { mainListItems, secondaryListItems } from '../components/listItems';
+import MainListItems from '../components/list-item/mainList';
+import SecondaryListItems from '../components/list-item/SecondList';
 import AppBar from '../components/mui-styled/appBar.js'
 import Drawer from '../components/mui-styled/drawer'
 import Copyright from '../components/Copyright'
+// redux
+import { useSelector } from 'react-redux';
 
 const mdTheme = createTheme();
 
 const DashboardContent = () => {
+
+    const programInfo = useSelector(state => state.user.programInfo);
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -81,9 +83,9 @@ const DashboardContent = () => {
                         </IconButton>
                     </Toolbar>
                     <Divider />
-                    <List>{mainListItems}</List>
+                    <MainListItems />
                     <Divider />
-                    <List>{secondaryListItems}</List>
+                    <SecondaryListItems />
                 </Drawer>
                 <Box
                     component="main"
@@ -98,45 +100,10 @@ const DashboardContent = () => {
                     }}
                 >
                     <Toolbar />
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                        <Grid container spacing={3}>
-                            {/* Chart */}
-                            <Grid item xs={12} md={8} lg={9}>
-                                <Paper
-                                    sx={{
-                                        p: 2,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: 240,
-                                    }}
-                                >
-                                    {/* HERE */}
-                                </Paper>
-                            </Grid>
-                            {/* Recent Deposits */}
-                            <Grid item xs={12} md={4} lg={3}>
-                                <Paper
-                                    sx={{
-                                        p: 2,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: 240,
-                                    }}
-                                >
-                                    {/* HERE */}
-                                </Paper>
-                            </Grid>
-                            {/* Recent Orders */}
-                            <Grid item xs={12}>
-                                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                    {/* HERE */}
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                        <Copyright sx={{ pt: 4 }} />
-                    </Container>
+
                 </Box>
             </Box>
+            {/* <Copyright sx={{ pt: 4 }} /> */}
         </ThemeProvider>
     );
 }
