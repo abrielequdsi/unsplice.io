@@ -16,6 +16,7 @@ import MainListItems from '../components/list-item/mainList';
 import SecondaryListItems from '../components/list-item/SecondList';
 import AppBar from '../components/mui-styled/appBar.js'
 import Drawer from '../components/mui-styled/drawer'
+import SubPage from '../components/sub-pages/SubPage.js'
 import Copyright from '../components/Copyright'
 // redux
 import { useSelector } from 'react-redux';
@@ -87,21 +88,7 @@ const DashboardContent = () => {
                     <Divider />
                     <SecondaryListItems />
                 </Drawer>
-                <Box
-                    component="main"
-                    sx={{
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: '100vh',
-                        overflow: 'auto',
-                    }}
-                >
-                    <Toolbar />
-
-                </Box>
+                <SubPage />
             </Box>
             {/* <Copyright sx={{ pt: 4 }} /> */}
         </ThemeProvider>

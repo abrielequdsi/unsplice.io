@@ -5,13 +5,18 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 // Gql
 import { useQuery, gql } from "@apollo/client";
 // redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { modulePage } from '../../redux/actions/subPage.action'
+
 
 const SecondaryListItems = () => {
     const programInfo = useSelector(state => state.user.programInfo);
+    const dispatch = useDispatch();
 
     const { loading, data } = useQuery(GET_MODULE_LIST, {
         variables: {
@@ -19,24 +24,30 @@ const SecondaryListItems = () => {
         }
     })
 
+    // Render Module List
     let listItems;
     if (loading) {
-        listItems = (<p>Loding</p>)
+        listItems = (
+            <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+            </Box>)
     } else {
         listItems = (
             <List>
                 <div>
                     <ListSubheader inset>My Modules</ListSubheader>
-                    {console.log('test', data)}
+
                     {
                         data.getModuleList.map(module => {
                             return (
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <AssignmentIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={module.moduleCode} />
-                                </ListItem>
+                                <div key={module.id} onClick={() => dispatch(modulePage(module.id))}>
+                                    <ListItem button  >
+                                        <ListItemIcon>
+                                            <AssignmentIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={module.moduleCode} />
+                                    </ListItem>
+                                </div>
                             )
                         })
                     }

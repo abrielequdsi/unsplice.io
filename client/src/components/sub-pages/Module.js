@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Class = () => {
+const Modules = () => {
     return (
         <div>
-            class page
+            module page
         </div>
     )
 }
 
-export default Class
+export default Modules
