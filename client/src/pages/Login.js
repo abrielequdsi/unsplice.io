@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/Copyright'
 // Gql
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from '../../utils/graphql';
+import { LOGIN_USER } from '../utils/graphql';
 // redux
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/user.action'
