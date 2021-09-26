@@ -2,9 +2,9 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 // Sub-pages content
-import Overview from './Overview'
-import Class from './Class'
-import Module from './Module'
+import Overview from './sub-pages/Overview'
+import Class from './sub-pages/Class'
+import Module from './sub-pages/Module'
 // redux
 import { useSelector } from 'react-redux';
 

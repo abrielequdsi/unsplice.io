@@ -6,8 +6,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 // Components
-import MainListItems from '../list-item/MainList';
-import SecondaryListItems from '../list-item/SecondList';
+import MainListItems from './list-item/MainList';
+import SecondaryListItems from './list-item/SecondList';
 
 const drawerWidth = 240;
 
