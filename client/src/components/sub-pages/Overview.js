@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Components
-import ClassCard from '../cards/ClassCard';
+import ClassCard from '../cards/ModuleCard';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_MODULE_LIST } from '../../utils/graphql';
