@@ -43,3 +43,23 @@ export const GET_MODULE_LIST = gql`
     }
   }
 `
+
+export const GET_CLASSMATES = gql`
+  query ModuleList($programCode: String!) {
+    getClassmates(programCode: $programCode) {
+    id
+    firstName
+    lastName
+    institution
+
+    socialLinks {
+      github
+      instagram
+      linkedin
+      website
+    }
+
+    programCodes
+  }
+  }
+`

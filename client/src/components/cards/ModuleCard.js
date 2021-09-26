@@ -22,6 +22,7 @@ const ClassCard = ({ module: { id, name, desc, moduleCode, progress } }) => {
                         <CircularProgress value={progress} />
                     </Box>
                     <Container>
+                        {/* sx={{ fontSize: 14 }}  */}
                         <Typography gutterBottom variant="h7" component="div">
                             {name}
                         </Typography>

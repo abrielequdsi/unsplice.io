@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Components
-import ClassCard from '../cards/ModuleCard';
+import ModuleCard from '../cards/ModuleCard';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_MODULE_LIST } from '../../utils/graphql';
@@ -32,7 +32,7 @@ const Overview = () => {
             data.getModuleList.map((module) => {
                 return (
                     <Grid item key={module.id} xs={12} sm={6} md={4} sx={{ p: 2 }}>
-                        <ClassCard module={module} />
+                        <ModuleCard module={module} />
                     </Grid>
                 )
             }))
