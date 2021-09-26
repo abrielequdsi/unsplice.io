@@ -7,7 +7,8 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Gql
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_MODULE_LIST } from '../../utils/graphql';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { modulePage } from '../../redux/actions/subPage.action'
@@ -56,18 +57,5 @@ const SecondaryListItems = () => {
 
     return listItems
 };
-
-
-const GET_MODULE_LIST = gql`
-  query ModuleList($programId: ID!) {
-    getModuleList(programId: $programId) {
-        id
-        name
-        moduleCode
-        desc
-        progress
-    }
-  }
-`
 
 export default SecondaryListItems

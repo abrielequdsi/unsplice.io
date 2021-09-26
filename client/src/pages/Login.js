@@ -13,7 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // Components
 import Copyright from '../components/Copyright'
 // Gql
-import { useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from '../../utils/graphql';
 // redux
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/user.action'
@@ -120,35 +121,5 @@ const Login = (props) => {
     );
 }
 
-const LOGIN_USER = gql`
-  mutation Login(
-    $email: String!
-    $password: String!
-  ) {
-    login( email: $email, password: $password ) {
-        #Get User Info
-        userInfo {
-            id
-            firstName
-            lastName
-            institution
-            socialLinks {
-                github
-                instagram
-                linkedin
-                website
-            }
-            programCodes
-        }
-        #Get User Program
-        userProgram {
-            id
-            name
-            programCode
-        }
-        
-    }
-  }
-`;
 
 export default Login;
