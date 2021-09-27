@@ -36,7 +36,6 @@ const SecondaryListItems = () => {
             <List>
                 <div>
                     <ListSubheader inset>My Modules</ListSubheader>
-                    {console.log(userPrograms)}
                     {
                         data.getModuleList.map(module => {
                             return (
