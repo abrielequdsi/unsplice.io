@@ -12,6 +12,8 @@ export const LOGIN_USER = gql`
             firstName
             lastName
             institution
+            role
+            picture
             socialLinks {
                 github
                 instagram
@@ -109,3 +111,47 @@ export const GET_CONTENT = gql`
     }
   }
 `
+
+// MUTATION
+export const REGISTER_STUDENT = gql`
+  mutation Register(
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+    $firstName: String!
+    $lastName: String!
+    $institution: String
+    $role: String!
+    $picture: String
+    $instagram: String
+    $github: String
+    $linkedin: String
+    $website: String
+    $programCode: String!
+  ) {
+    createUser(
+      registerInput: {
+        email: $email, 
+        password: $password ,
+        confirmPassword: $confirmPassword,
+        firstName: $firstName,
+        lastName: $lastName,
+        institution: $institution,
+        role: $role,
+        picture: $picture,
+        socialLinks: {
+          instagram: $instagram,
+          github: $github,
+          linkedin: $linkedin,
+          website: $website,
+        }
+        programCode: $programCode
+      }
+      ) 
+      {
+        #Get User Info
+        email
+        
+    }
+  }
+`;

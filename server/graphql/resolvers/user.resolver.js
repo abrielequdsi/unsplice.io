@@ -4,7 +4,7 @@ const Program = require('../../models/program.model');
 const { UserInputError } = require('apollo-server');
 // Auth & Session
 const { SECRET_KEY } = require('../../config.js');
-const { validateLoginInput } = require('../../utils/validators')
+const { validateLoginInput, validateRegisterInput } = require('../../utils/validators')
 const jwt = require('jsonwebtoken');
 // TODO: Implement Bcrypt
 
@@ -71,6 +71,49 @@ module.exports = {
                 userPrograms: userPrograms,
                 token: token
             }
+        },
+        createUser: async (_, args, context, info) => {
+            const { email, password, confirmPassword, firstName, lastName, institution, role, programCode, picture } = args.registerInput;
+            const { github, linkedin, instagram, website } = args.registerInput.socialLinks;
+
+            // Validate user data
+            const { errors, valid } = validateRegisterInput(email, password, confirmPassword);
+            if (!valid) {
+                throw new UserInputError('Input Error', { errors: errors })
+            }
+
+            // Make sure email doesn't already exist
+            const user = await User.findOne({ email });
+            if (user) {
+                throw new UserInputError('Email is taken', {
+                    errors: {
+                        username: 'This email is taken'
+                    }
+                })
+            }
+
+            // Create user 
+            const newUser = new User({
+                email,
+                password,
+                firstName,
+                lastName,
+                institution,
+                role,
+                picture,
+                socialLinks: {
+                    instagram,
+                    github,
+                    linkedin,
+                    website,
+                },
+                programCodes: [programCode],
+                createdAt: new Date().toISOString()
+            });
+            const res = await newUser.save();
+
+            // Return User Info
+            return res
         }
     }
 }

@@ -30,10 +30,12 @@ const Login = (props) => {
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(proxy, result) {
+            console.log(result)
             dispatch(login(result.data.login))
             props.history.push('/')
         },
         onError(err) {
+            console.log(err)
             setErrors(err.graphQLErrors[0].extensions.errors);
         },
     })

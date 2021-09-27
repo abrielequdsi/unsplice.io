@@ -9,6 +9,7 @@ const typeDefs = gql`
         lastName: String!
         institution: String!
         role: String!
+        picture: String
         socialLinks: SocialLinks
         programCodes: [String]
     }
@@ -83,30 +84,54 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): UserAndProgram! 
         createModule(moduleInput: ModuleInput): Module!
-        createUser(userInput: UserInput): User!
+        createUser(registerInput: RegisterInput): User!
         createContent(ContentInput: ContentInput): Content!
 
     }
-    type ModuleInput {
+    input ModuleInput {
         name: String!
         moduleCode: String!
         desc: String!
     }
-    type UserInput {
+    input RegisterInput {
         email: String!
         password: String!
+        confirmPassword: String!
         firstName: String!
         lastName: String!
-        institution: String!
+        institution: String
         role: String!
-        socialLinks: SocialLinks
+        picture: String
+        socialLinks: SocialLinksInput
+        programCode: String! 
     }
-    type ContentInput {
+    input ContentInput {
         number: Int!
         title: String!
         desc: String!
-        notionContent: NotionContent
-        ideContent: IdeContent
+        notionContent: NotionContentInput
+        ideContent: IdeContentInput
+    }
+    input NotionContentInput {
+        title: String!
+        link: String!
+    }
+    input IdeContentInput {
+        title: String!
+        answer: String!
+        question: String!
+        testCase: [TestCaseInput!]
+        solution: String!
+    }
+    input TestCaseInput {
+        input: String!
+        output: String!
+    }
+    input SocialLinksInput {
+        instagram: String
+        github: String
+        linkedin: String
+        website: String
     }
     type UserAndProgram {
         userInfo: User!

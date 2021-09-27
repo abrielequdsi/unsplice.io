@@ -3,10 +3,13 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import LogoutIcon from '@mui/icons-material/Logout';
 // mui styled
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/actions/user.action'
 
 
 const drawerWidth = 240;
@@ -31,6 +34,9 @@ const StyledAppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== '
 )
 
 const AppBar = ({ open, toggleDrawer }) => {
+    const currPage = useSelector(state => state.subPage);
+    const dispatch = useDispatch();
+
     return (
         <StyledAppBar position="absolute" open={open}>
             <Toolbar
@@ -56,13 +62,21 @@ const AppBar = ({ open, toggleDrawer }) => {
                     color="inherit"
                     noWrap
                     sx={{ flexGrow: 1 }}
+                    style={{ textTransform: 'capitalize' }}
                 >
-                    Dashboard
+                    {currPage.current.toLowerCase()}
                 </Typography>
-                <IconButton color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
+                <IconButton color="inherit" sx={{ cursor: 'pointer' }} onClick={() => dispatch(logout())}>
+                    <LogoutIcon />
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{ flexGrow: 1, ml: 1.5 }}
+                    >
+                        Logout
+                    </Typography>
                 </IconButton>
             </Toolbar>
         </StyledAppBar>

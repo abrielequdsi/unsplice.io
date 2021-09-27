@@ -7,6 +7,7 @@ const userSchema = new Schema({
   lastName: String,
   institution: String,
   role: String,
+  picture: String,
   socialLinks: {
     instagram: String,
     github: String,
@@ -17,4 +18,4 @@ const userSchema = new Schema({
   cratedAt: String
 })
 
-module.exports = model('User', userSchema );
+module.exports = model('User', userSchema);

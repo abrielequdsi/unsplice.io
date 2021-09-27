@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Components
 import ClassCard from '../cards/ClassCard';
+import RegisterCard from '../cards/RegisterCard';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_CLASSMATES } from '../../utils/graphql'
@@ -14,7 +15,7 @@ import { useSelector } from 'react-redux';
 
 
 const Class = () => {
-    const userPrograms = useSelector(state => state.user.userPrograms);
+    const { userPrograms, userInfo } = useSelector(state => state.user);
 
     const { loading, data } = useQuery(GET_CLASSMATES, {
         variables: {
@@ -54,6 +55,24 @@ const Class = () => {
                 </Grid>
 
             </Grid>
+            {
+                (userInfo.role === 'teacher')
+                &&
+                (<Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Grid container spacing={2} sx={{ p: 2, }}>
+                            <Paper sx={{ p: 2, m: 'auto' }}>
+                                <RegisterCard />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Grid>)
+            }
         </Container>
     )
 }

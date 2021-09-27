@@ -16,10 +16,10 @@ const ClassCard = ({ userInfo }) => {
             {/* sx={{ alignItems: 'center' }} */}
             <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ marginLeft: 'auto', marginRight: 'auto', mt: 1.5 }} />
-                <Typography variant="h5" component="div" sx={{ mt: 2.75 }}>
+                <Typography variant="h6" component="div" sx={{ mt: 2, mb: 0.5 }} style={{ textTransform: 'capitalize' }}>
                     {userInfo.firstName} {userInfo.lastName}
                 </Typography>
-                <Typography sx={{ mb: 3 }} color="text.secondary">
+                <Typography variant="subtitle" component="div" sx={{ mb: 2 }} color="text.secondary" style={{ textTransform: 'capitalize' }}>
                     {userInfo.institution}
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mr: 7, ml: 7, mb: 1.5 }}>
