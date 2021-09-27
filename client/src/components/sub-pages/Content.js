@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import CardMedia from '@mui/material/CardMedia';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_CONTENT } from '../../utils/graphql';
-// redux
+// Redux
 import { useSelector } from 'react-redux';
+// Notion
+import loadNotionContent from '../../utils/notionApi.js'
+import { NotionRenderer } from 'react-notion'
+import "react-notion/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css"; // only needed for code highlighting
 
 const Content = () => {
 
@@ -22,21 +26,46 @@ const Content = () => {
         }
     })
 
+    // Notion Content
+    const [notionPagedata, setNotionPagedata] = useState(null)
+    const [notionLoading, setNotionLoading] = useState(false)
+
+    useEffect(() => {
+        if (!loading) {
+            const notionLink = data.getContent.notionContent.link
+            const notionSlug = notionLink.split('-').slice(-1)[0]
+
+            setNotionLoading(true);
+            loadNotionContent(notionSlug)
+                .then((res) => {
+                    setNotionPagedata(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+                .finally(() => {
+                    setNotionLoading(false)
+                })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    // Render Content
     let content;
-    if (loading) {
+    if (loading || notionLoading) {
         content = (
             <Box sx={{ display: 'flex', align: 'center' }}>
                 <CircularProgress />
             </Box>)
     } else {
         content = (
-            <Box sx={{ display: 'flex', align: 'center' }}>
-                {/* <CardMedia
-                    component="iframe"
-                    height="140"
-                    image={data.getContent.videoContent.link}
-                    title="Video" /> */}
-            </Box>)
+            <Container >
+                {
+                    (notionPagedata
+                        &&
+                        <NotionRenderer blockMap={notionPagedata} />)
+                }
+            </Container>)
     }
 
     return (
@@ -44,7 +73,6 @@ const Content = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        {console.log(data)}
                         {content}
                     </Paper>
                 </Grid>

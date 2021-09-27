@@ -90,13 +90,9 @@ export const GET_CONTENT = gql`
         title
         desc
         completed
-        videoContent {
+        notionContent {
           title
           link
-        }
-        textContent {
-          title
-          text
         }
         ideContent {
           title
