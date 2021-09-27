@@ -1,8 +1,8 @@
-module.exports.validateLoginInput = (username, password) => {
+module.exports.validateLoginInput = (email, password) => {
     const errors = {};
     // Handle USERNAME
-    if (username.trim() === '') {
-        errors.username = 'Username must not be empty';
+    if (email.trim() === '') {
+        errors.email = 'Username must not be empty';
     }
     // Handle PASSWORD
     if (password.trim() === '') {

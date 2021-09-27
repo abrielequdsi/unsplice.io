@@ -26,7 +26,7 @@ const theme = createTheme();
 const Login = (props) => {
     const dispatch = useDispatch();
 
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState({});
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(proxy, result) {
@@ -35,7 +35,7 @@ const Login = (props) => {
             props.history.push('/')
         },
         onError(err) {
-            setError(err.message);
+            setErrors(err.graphQLErrors[0].extensions.errors);
         },
     })
 
@@ -96,15 +96,9 @@ const Login = (props) => {
                             id="password"
                             autoComplete="current-password"
                         />
-                        {loading && (<LinearProgress sx={{ mb: 1 }} />)}
-                        {
-                            (error)
-                            &&
-                            (<Alert severity="error">
-                                {error}
-                            </Alert>)
 
-                        }
+                        {loading && (<LinearProgress sx={{ mb: 1 }} />)}
+
                         <Button
                             type="submit"
                             fullWidth
@@ -113,9 +107,23 @@ const Login = (props) => {
                         >
                             Sign In
                         </Button>
+
+                        {
+                            (Object.keys(errors).length > 0)
+                            &&
+                            (
+                                Object.values(errors).map(value => (
+                                    <Alert severity="error" key={value} sx={{ mb: 1 }}>
+                                        {value}
+                                    </Alert>
+                                ))
+                            )
+
+                        }
+
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 6, mb: 4 }} />
+                <Copyright sx={{ mt: 5, mb: 4 }} />
             </Container>
         </ThemeProvider>
     );

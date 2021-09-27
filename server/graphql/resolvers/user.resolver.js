@@ -1,5 +1,7 @@
 const User = require('../../models/user.model');
 const Program = require('../../models/program.model');
+// Gql
+const { UserInputError } = require('apollo-server');
 // Auth & Session
 const { SECRET_KEY } = require('../../config.js');
 const { validateLoginInput } = require('../../utils/validators')
@@ -26,14 +28,30 @@ module.exports = {
     Mutation: {
         login: async (_, { email, password }, context, info) => {
 
+            // Validate user data
+            const { errors, valid } = validateLoginInput(email, password);
+            if (!valid) {
+                // throw new Error({ errors })
+                throw new UserInputError('Input Error', { errors: errors })
+            }
+
             // Handle user data
             const user = await User.findOne({ email });
+
+            // Handle username
             if (!user) {
-                throw new Error("User not found")
+                // throw new Error("User not found")
+                errors.general = "User not found";
+                throw new UserInputError('User not found', { errors: errors })
             }
+
+            // Handle password
             if (password != user.password) {
-                throw new Error("Wrong credentials")
+                // throw new Error("Wrong credentials")
+                errors.general = "Wrong credentials";
+                throw new UserInputError('Wrong credentials', { errors: errors })
             }
+
             // Handle program data
             const programInfo = await Program.find({
                 programCode: {
