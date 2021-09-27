@@ -44,6 +44,24 @@ export const GET_MODULE_LIST = gql`
   }
 `
 
+export const GET_MODULE = gql`
+  query Module($moduleId: ID!) {
+    getModule(moduleId: $moduleId) {
+        id
+        name
+        desc
+        progress
+        contents {
+          id
+          number
+          title
+          desc
+          completed
+        }
+    }
+  }
+`
+
 export const GET_CLASSMATES = gql`
   query ModuleList($programCode: String!) {
     getClassmates(programCode: $programCode) {
