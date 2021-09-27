@@ -82,6 +82,31 @@ const typeDefs = gql`
     }
     type Mutation {
         login(email: String!, password: String!): UserAndProgram! 
+        createModule(moduleInput: ModuleInput): Module!
+        createUser(userInput: UserInput): User!
+        createContent(ContentInput: ContentInput): Content!
+
+    }
+    type ModuleInput {
+        name: String!
+        moduleCode: String!
+        desc: String!
+    }
+    type UserInput {
+        email: String!
+        password: String!
+        firstName: String!
+        lastName: String!
+        institution: String!
+        role: String!
+        socialLinks: SocialLinks
+    }
+    type ContentInput {
+        number: Int!
+        title: String!
+        desc: String!
+        notionContent: NotionContent
+        ideContent: IdeContent
     }
     type UserAndProgram {
         userInfo: User!
