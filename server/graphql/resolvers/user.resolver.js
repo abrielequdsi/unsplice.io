@@ -1,8 +1,19 @@
 const User = require('../../models/user.model');
 const Program = require('../../models/program.model');
-
+// Auth & Session
+const { SECRET_KEY } = require('../../config.js');
+const { validateLoginInput } = require('../../utils/validators')
+const jwt = require('jsonwebtoken');
 // TODO: Implement Bcrypt
-// TODO: Implement JWT
+
+// Helper function
+function generateToken(user) {
+    return jwt.sign({
+        id: user.id,
+        email: user.email,
+        username: user.username,
+    }, SECRET_KEY, { expiresIn: '1h' });
+}
 
 module.exports = {
     Query: {
