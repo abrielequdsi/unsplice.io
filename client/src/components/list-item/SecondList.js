@@ -20,7 +20,7 @@ const SecondaryListItems = () => {
 
     const { loading, data } = useQuery(GET_MODULE_LIST, {
         variables: {
-            programId: userPrograms[0]._id
+            programId: userPrograms[0].id
         }
     })
 
@@ -36,6 +36,7 @@ const SecondaryListItems = () => {
             <List>
                 <div>
                     <ListSubheader inset>My Modules</ListSubheader>
+                    {console.log(userPrograms)}
                     {
                         data.getModuleList.map(module => {
                             return (

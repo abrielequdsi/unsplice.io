@@ -17,7 +17,7 @@ const Overview = () => {
 
     const { loading, data } = useQuery(GET_MODULE_LIST, {
         variables: {
-            programId: userPrograms[0]._id
+            programId: userPrograms[0].id
         }
     })
 

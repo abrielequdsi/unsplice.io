@@ -9,13 +9,17 @@ const initialState = {
 
 if (localStorage.getItem('jwtToken')) {
     const decodedToken = jwtDecode(localStorage.getItem('jwtToken'))
-    console.log(decodedToken)
+
     if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem('jwtToken');
     } else {
         initialState.userInfo = decodedToken.userInfo;
-        initialState.userPrograms = decodedToken.userPrograms;
-        console.log(initialState)
+        initialState.userPrograms = decodedToken.userPrograms.map(userProgram => {
+            return {
+                ...userProgram,
+                id: userProgram._id
+            }
+        });
     }
 }
 
