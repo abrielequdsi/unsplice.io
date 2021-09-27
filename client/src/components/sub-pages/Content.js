@@ -48,7 +48,7 @@ const Content = () => {
                 })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, notionPagedata)
 
     // Render Content
     let content;
