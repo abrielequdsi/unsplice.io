@@ -34,7 +34,7 @@ const RegisterCard = () => {
         website: '',
     })
 
-    const [registerStudent, { loading }] = useMutation(REGISTER_STUDENT, {
+    const [registerStudent] = useMutation(REGISTER_STUDENT, {
         update(proxy, result) {
 
             console.log(result)
@@ -61,6 +61,19 @@ const RegisterCard = () => {
                 role: 'student',
                 programCode: programCode
             }
+        })
+        setInput({
+            email: '',
+            password: '',
+            confirmPassword: '',
+            firstName: '',
+            lastName: '',
+            institution: '',
+            picture: '',
+            github: '',
+            instagram: '',
+            linkedin: '',
+            website: '',
         })
 
 
