@@ -86,6 +86,7 @@ const typeDefs = gql`
     type UserAndProgram {
         userInfo: User!
         userProgram: [Program!]
+        token: String!
     }
     `;
 

@@ -13,7 +13,7 @@ function generateToken(user) {
     return jwt.sign({
         id: user.id,
         email: user.email,
-        username: user.username,
+        // username: user.username,
     }, SECRET_KEY, { expiresIn: '1h' });
 }
 
@@ -52,6 +52,9 @@ module.exports = {
                 throw new UserInputError('Wrong credentials', { errors: errors })
             }
 
+            // jwt
+            const token = generateToken(user)
+
             // Handle program data
             const programInfo = await Program.find({
                 programCode: {
@@ -62,7 +65,8 @@ module.exports = {
             // Return User Info
             return {
                 userInfo: user,
-                userProgram: programInfo
+                userProgram: programInfo,
+                token: token
             }
         }
     }
