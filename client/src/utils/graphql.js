@@ -81,3 +81,33 @@ export const GET_CLASSMATES = gql`
   }
   }
 `
+
+export const GET_CONTENT = gql`
+  query Content($moduleId: ID!, $contentId: ID!) {
+    getContent(moduleId: $moduleId, contentId: $contentId) {
+        id
+        number
+        title
+        desc
+        completed
+        videoContent {
+          title
+          link
+        }
+        textContent {
+          title
+          text
+        }
+        ideContent {
+          title
+          answer
+          question
+          testCase {
+            input
+            output
+          }
+          solution
+        }
+    }
+  }
+`

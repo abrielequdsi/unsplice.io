@@ -34,7 +34,7 @@ const Modules = () => {
         module = (
             data.getModule.contents.map((content) => {
                 return (
-                    <ModuleCard content={content} />
+                    <ModuleCard content={content} moduleId={moduleId} />
                 )
             })
         )
