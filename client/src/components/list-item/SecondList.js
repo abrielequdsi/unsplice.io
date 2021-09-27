@@ -15,12 +15,12 @@ import { modulePage } from '../../redux/actions/subPage.action'
 
 
 const SecondaryListItems = () => {
-    const programInfo = useSelector(state => state.user.programInfo);
+    const userPrograms = useSelector(state => state.user.userPrograms);
     const dispatch = useDispatch();
 
     const { loading, data } = useQuery(GET_MODULE_LIST, {
         variables: {
-            programId: programInfo[0].id
+            programId: userPrograms[0]._id
         }
     })
 
@@ -36,7 +36,6 @@ const SecondaryListItems = () => {
             <List>
                 <div>
                     <ListSubheader inset>My Modules</ListSubheader>
-
                     {
                         data.getModuleList.map(module => {
                             return (

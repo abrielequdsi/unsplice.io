@@ -21,11 +21,13 @@ export const LOGIN_USER = gql`
             programCodes
         }
         #Get User Program
-        userProgram {
+        userPrograms {
             id
             name
             programCode
         }
+
+        token
         
     }
   }

@@ -14,7 +14,7 @@ import { GET_MODULE } from '../../utils/graphql';
 // redux
 import { useSelector } from 'react-redux';
 
-const Modules = () => {
+const Module = () => {
 
     const moduleId = useSelector(state => state.subPage.id)
 
@@ -34,7 +34,7 @@ const Modules = () => {
         module = (
             data.getModule.contents.map((content) => {
                 return (
-                    <ModuleCard content={content} moduleId={moduleId} />
+                    <ModuleCard key={content.id} content={content} moduleId={moduleId} />
                 )
             })
         )
@@ -83,4 +83,4 @@ const Modules = () => {
     )
 }
 
-export default Modules
+export default Module

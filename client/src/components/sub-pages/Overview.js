@@ -13,11 +13,11 @@ import { GET_MODULE_LIST } from '../../utils/graphql';
 import { useSelector } from 'react-redux';
 
 const Overview = () => {
-    const programInfo = useSelector(state => state.user.programInfo);
+    const userPrograms = useSelector(state => state.user.userPrograms);
 
     const { loading, data } = useQuery(GET_MODULE_LIST, {
         variables: {
-            programId: programInfo[0].id
+            programId: userPrograms[0]._id
         }
     })
 

@@ -14,11 +14,11 @@ import { useSelector } from 'react-redux';
 
 
 const Class = () => {
-    const programInfo = useSelector(state => state.user.programInfo);
+    const userPrograms = useSelector(state => state.user.userPrograms);
 
     const { loading, data } = useQuery(GET_CLASSMATES, {
         variables: {
-            programCode: programInfo[0].programCode
+            programCode: userPrograms[0].programCode
         }
     })
 

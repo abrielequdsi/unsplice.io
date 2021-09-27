@@ -8,14 +8,16 @@ const { validateLoginInput } = require('../../utils/validators')
 const jwt = require('jsonwebtoken');
 // TODO: Implement Bcrypt
 
-// Helper function
-function generateToken(user) {
+// Jwt Helper function
+function generateToken(user, userPrograms) {
     return jwt.sign({
-        id: user.id,
-        email: user.email,
-        // username: user.username,
+
+        userInfo: user,
+        userPrograms: userPrograms
+
     }, SECRET_KEY, { expiresIn: '1h' });
 }
+
 
 module.exports = {
     Query: {
@@ -52,20 +54,21 @@ module.exports = {
                 throw new UserInputError('Wrong credentials', { errors: errors })
             }
 
-            // jwt
-            const token = generateToken(user)
 
             // Handle program data
-            const programInfo = await Program.find({
+            const userPrograms = await Program.find({
                 programCode: {
                     $in: user.programCodes
                 }
             })
 
+            // jwt
+            const token = generateToken(user, userPrograms)
+
             // Return User Info
             return {
                 userInfo: user,
-                userProgram: programInfo,
+                userPrograms: userPrograms,
                 token: token
             }
         }
