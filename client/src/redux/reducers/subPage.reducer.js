@@ -20,7 +20,7 @@ const subPage = (state = initialState, action) => {
         case MODULE:
             return {
                 current: MODULE,
-                id: action.payload.moduleId
+                id: action.payload
             };
         default:
             return state;
