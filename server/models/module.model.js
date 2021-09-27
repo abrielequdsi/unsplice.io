@@ -5,13 +5,9 @@ const contentSchema = {
     title: String,
     desc: String,
     completed: Boolean,
-    videoContent: {
+    notionContent: {
         title: String,
         link: String
-    },
-    textContent: {
-        title: String,
-        text: String
     },
     ideContent: {
         title: String,

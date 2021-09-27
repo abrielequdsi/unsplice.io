@@ -55,18 +55,13 @@ const typeDefs = gql`
         title: String!
         desc: String!
         completed: Boolean!
-        videoContent: VideoContent
-        textContent: TextContent
+        notionContent: NotionContent
         ideContent: IdeContent
         createdAt: String!
     }
-    type VideoContent {
+    type NotionContent {
         title: String!
         link: String!
-    }
-    type TextContent {
-        title: String!
-        text: String!
     }
     type IdeContent {
         title: String!
