@@ -6,3 +6,4 @@ export const LOGOUT = 'LOGOUT';
 export const OVERVIEW = "OVERVIEW";
 export const CLASS = "CLASS";
 export const MODULE = "MODULE";
+export const CONTENT = "CONTENT";

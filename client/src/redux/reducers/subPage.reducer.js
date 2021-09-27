@@ -1,4 +1,4 @@
-import { OVERVIEW, CLASS, MODULE } from "../actions/actionTypes";
+import { OVERVIEW, CLASS, MODULE, CONTENT } from "../actions/actionTypes";
 
 const initialState = {
     current: OVERVIEW,
@@ -20,6 +20,11 @@ const subPage = (state = initialState, action) => {
         case MODULE:
             return {
                 current: MODULE,
+                id: action.payload
+            };
+        case CONTENT:
+            return {
+                current: CONTENT,
                 id: action.payload
             };
         default:
