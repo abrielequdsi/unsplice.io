@@ -28,7 +28,7 @@ const SecondaryListItems = () => {
     let listItems;
     if (loading) {
         listItems = (
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ ml: 'auto', mr: 'auto' }}>
                 <CircularProgress />
             </Box>)
     } else {
@@ -44,7 +44,7 @@ const SecondaryListItems = () => {
                                         <ListItemIcon>
                                             <AssignmentIcon />
                                         </ListItemIcon>
-                                        <ListItemText primary={module.moduleCode} />
+                                        <ListItemText primary={module.moduleCode} style={{ textTransform: 'capitalize' }} />
                                     </ListItem>
                                 </div>
                             )

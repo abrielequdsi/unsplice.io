@@ -54,7 +54,7 @@ const Content = () => {
     let content;
     if (loading || notionLoading) {
         content = (
-            <Box sx={{ display: 'flex', align: 'center' }}>
+            <Box sx={{ ml: 'auto', mr: 'auto' }}>
                 <CircularProgress />
             </Box>)
     } else {

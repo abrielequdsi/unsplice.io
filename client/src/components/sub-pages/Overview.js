@@ -25,7 +25,7 @@ const Overview = () => {
     let moduleList;
     if (loading) {
         moduleList = (
-            <Box sx={{ display: 'flex', align: 'center' }}>
+            <Box sx={{ ml: 'auto', mr: 'auto' }}>
                 <CircularProgress />
             </Box>)
     } else {

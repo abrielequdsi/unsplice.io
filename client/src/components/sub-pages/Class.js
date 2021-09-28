@@ -26,7 +26,7 @@ const Class = () => {
     let classmates;
     if (loading) {
         classmates = (
-            <Box sx={{ display: 'flex', align: 'center' }}>
+            <Box sx={{ ml: 'auto', mr: 'auto' }}>
                 <CircularProgress />
             </Box>)
     } else {

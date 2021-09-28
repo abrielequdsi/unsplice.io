@@ -56,12 +56,8 @@ const typeDefs = gql`
         title: String!
         desc: String!
         completed: Boolean!
-        notionContent: NotionContent
+        notionContent: String!
         createdAt: String!
-    }
-    type NotionContent {
-        title: String!
-        link: String!
     }
     type Query {
         getModuleList(programId: ID!): [ModuleList]
@@ -99,15 +95,7 @@ const typeDefs = gql`
         number: Int!
         title: String!
         desc: String!
-        notionContent: NotionContentInput
-    }
-    input NotionContentInput {
-        title: String!
-        link: String!
-    }
-    input TestCaseInput {
-        input: String!
-        output: String!
+        notionContent: String!
     }
     input SocialLinksInput {
         instagram: String

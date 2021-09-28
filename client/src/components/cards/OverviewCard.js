@@ -26,7 +26,7 @@ const ClassCard = ({ module: { id, name, desc, moduleCode, progress } }) => {
                         <Typography gutterBottom variant="h7" component="div">
                             {name}
                         </Typography>
-                        <Typography gutterBottom variant="subtitle2" component="div">
+                        <Typography gutterBottom variant="subtitle2" component="div" style={{ textTransform: 'capitalize' }}>
                             {moduleCode}
                         </Typography>
                     </Container>

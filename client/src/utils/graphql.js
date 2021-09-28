@@ -73,7 +73,7 @@ export const GET_CLASSMATES = gql`
     firstName
     lastName
     institution
-
+    picture
     socialLinks {
       github
       instagram
@@ -94,10 +94,7 @@ export const GET_CONTENT = gql`
         title
         desc
         completed
-        notionContent {
-          title
-          link
-        }
+        notionContent
     }
   }
 `
@@ -177,17 +174,14 @@ export const CREATE_CONTENT = gql`
     $number: Int!
     $title: String!
     $desc: String!
-    $notionContent: {
-      $title: String!,
-      $link: String
-    },
+    $notionContent: String!
   ) {
     createContent(
       contentInput: {
         moduleId: $moduleId,
         number: $number,
         title: $title,
-        desc: $desc
+        desc: $desc,
         notionContent: $notionContent
       }
       ) 
@@ -201,3 +195,11 @@ export const CREATE_CONTENT = gql`
     }
   }
 `;
+
+// export const CHECK_BOX = gql`
+//   mutation CheckBox {
+//     checkBox{
+
+//     }
+//   }
+// `

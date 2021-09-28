@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 // redux
 import { useDispatch } from 'react-redux';
 import { contentPage } from '../../redux/actions/subPage.action'
@@ -18,9 +19,10 @@ const ModuleCard = ({ moduleId, content }) => {
     const theme = useTheme();
 
     return (
+
         <Card sx={{ display: 'flex', mb: 2 }} >
-            <CardContent sx={{ mt: 1.5, ml: 2 }} >
-                <Typography component="div" variant="h7">
+            <CardContent sx={{ mt: 1.5, ml: 2 }}>
+                <Typography component="div" variant="h7"  >
                     {content.number}.
                 </Typography>
             </CardContent>
@@ -41,12 +43,13 @@ const ModuleCard = ({ moduleId, content }) => {
                     </Typography>
                 </CardContent>
             </Box>
-            <CardContent >
+            <CardContent sx={{ ml: 'auto' }}>
                 <Typography component="div" variant="h7">
-                    <Checkbox defaultChecked />
+                    <Checkbox onClick={() => console.log(contentId)} />
                 </Typography>
             </CardContent>
         </Card>
+
     );
 }
 

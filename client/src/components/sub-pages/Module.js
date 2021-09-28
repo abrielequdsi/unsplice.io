@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import LinearProgress from '../cards/LinearProgress';
 // Components
 import ModuleCard from '../cards/ModuleCard';
+// Components
+import CreateContent from '../cards/CreateContent';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_MODULE } from '../../utils/graphql';
@@ -17,6 +19,7 @@ import { useSelector } from 'react-redux';
 const Module = () => {
 
     const moduleId = useSelector(state => state.subPage.id)
+    const { userInfo } = useSelector(state => state.user);
 
     const { loading, data } = useQuery(GET_MODULE, {
         variables: {
@@ -43,7 +46,7 @@ const Module = () => {
     let moduleDesc;
     if (loading) {
         moduleDesc = (
-            <Box sx={{ display: 'flex', align: 'center' }}>
+            <Box sx={{ ml: 'auto', mr: 'auto' }}>
                 <CircularProgress />
             </Box>)
     } else {
@@ -55,14 +58,16 @@ const Module = () => {
                 <Typography variant="caption text" color="text.secondary">
                     {data.getModule.desc}
                 </Typography>
-                <LinearProgress value={data.getModule.progress} sx={{ mr: 10 }} />
+                <Box sx={{ mt: '10px' }} >
+                    <LinearProgress value={data.getModule.progress} />
+                </Box>
             </Box>
         )
     }
 
 
     return (
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -77,8 +82,25 @@ const Module = () => {
                 <Grid item xs={12} >
                     {module}
                 </Grid>
-
             </Grid>
+            {
+                (userInfo.role === 'teacher')
+                &&
+                (<Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Grid container spacing={2} sx={{ p: 2, }}>
+                            <Paper sx={{ p: 2, m: 'auto' }}>
+                                <CreateContent />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Grid>)
+            }
         </Container >
     )
 }

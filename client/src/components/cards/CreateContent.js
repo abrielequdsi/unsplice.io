@@ -17,13 +17,14 @@ import { useSelector } from 'react-redux';
 const theme = createTheme();
 
 const CreateContent = () => {
-    const programId = useSelector(state => state.user.userPrograms[0].id)
+    const moduleId = useSelector(state => state.subPage.id)
 
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
-        name: '',
-        moduleCode: '',
-        desc: ''
+        number: '',
+        title: '',
+        desc: '',
+        notionContent: '',
     })
 
     const [createModule] = useMutation(CREATE_CONTENT, {
@@ -46,24 +47,26 @@ const CreateContent = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // eslint-disable-next-line no-console
+        console.log(moduleId)
         console.log({
             ...input,
         })
 
-        console.log('id: ', programId)
         createModule({
             variables: {
-                programId: programId,
-                name: input.name,
-                moduleCode: input.moduleCode,
-                desc: input.desc
+                moduleId: moduleId,
+                number: parseInt(input.number),
+                title: input.title,
+                desc: input.desc,
+                notionContent: input.notionContent
             }
         })
 
         setInput({
-            name: '',
-            moduleCode: '',
-            desc: ''
+            number: '',
+            title: '',
+            desc: '',
+            notionContent: '',
         })
 
 
@@ -82,32 +85,31 @@ const CreateContent = () => {
                     }}
                 >
                     <Typography component="h1" variant="h6">
-                        Create Module
+                        Create Content
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2} >
-                            <Grid item xs={12}>
+                            <Grid item xs={12} >
                                 <TextField
-                                    value={input.name}
+                                    value={input.title}
                                     onChange={handleChange}
-                                    autoComplete="name"
-                                    name="name"
+                                    autoComplete="title"
+                                    name="title"
                                     required
                                     fullWidth
-                                    id="name"
-                                    label="Module Name"
+                                    id="title"
+                                    label="Title"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={6}>
                                 <TextField
-                                    value={input.moduleCode}
+                                    value={input.number}
                                     onChange={handleChange}
                                     required
                                     fullWidth
-                                    id="moduleCode"
-                                    label="Module Code"
-                                    name="moduleCode"
-                                    autoComplete="moduleCode"
+                                    id="number"
+                                    label="Number"
+                                    name="number"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -120,6 +122,18 @@ const CreateContent = () => {
                                     label="Description"
                                     name="desc"
                                     autoComplete="desc"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    value={input.notionContent}
+                                    onChange={handleChange}
+                                    required
+                                    fullWidth
+                                    id="notionContent"
+                                    label="Notion Link"
+                                    name="notionContent"
+                                    autoComplete="notionContent"
                                 />
                             </Grid>
 
