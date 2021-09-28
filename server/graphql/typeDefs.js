@@ -57,23 +57,11 @@ const typeDefs = gql`
         desc: String!
         completed: Boolean!
         notionContent: NotionContent
-        ideContent: IdeContent
         createdAt: String!
     }
     type NotionContent {
         title: String!
         link: String!
-    }
-    type IdeContent {
-        title: String!
-        answer: String!
-        question: String!
-        testCase: [TestCase!]
-        solution: String!
-    }
-    type TestCase {
-        input: String!
-        output: String!
     }
     type Query {
         getModuleList(programId: ID!): [ModuleList]
@@ -85,7 +73,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): UserAndProgram! 
         createModule(moduleInput: ModuleInput): Module!
         createUser(registerInput: RegisterInput): User!
-        createContent(ContentInput: ContentInput): Content!
+        createContent(contentInput: ContentInput): Content!
 
     }
     input ModuleInput {
@@ -107,22 +95,15 @@ const typeDefs = gql`
         programCode: String! 
     }
     input ContentInput {
+        moduleId: ID!
         number: Int!
         title: String!
         desc: String!
         notionContent: NotionContentInput
-        ideContent: IdeContentInput
     }
     input NotionContentInput {
         title: String!
         link: String!
-    }
-    input IdeContentInput {
-        title: String!
-        answer: String!
-        question: String!
-        testCase: [TestCaseInput!]
-        solution: String!
     }
     input TestCaseInput {
         input: String!

@@ -32,8 +32,8 @@ const Content = () => {
 
     useEffect(() => {
         if (!loading) {
-            const notionLink = data.getContent.notionContent.link
-            const notionSlug = notionLink.split('-').slice(-1)[0]
+            const notionContent = data.getContent.notionContent
+            const notionSlug = notionContent.split('-').slice(-1)[0]
 
             setNotionLoading(true);
             loadNotionContent(notionSlug)

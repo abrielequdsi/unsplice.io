@@ -98,16 +98,6 @@ export const GET_CONTENT = gql`
           title
           link
         }
-        ideContent {
-          title
-          answer
-          question
-          testCase {
-            input
-            output
-          }
-          solution
-        }
     }
   }
 `
@@ -177,6 +167,37 @@ export const CREATE_MODULE = gql`
         moduleCode,
         desc,
         progress
+    }
+  }
+`;
+
+export const CREATE_CONTENT = gql`
+  mutation NewContent(
+    $moduleId: ID!
+    $number: Int!
+    $title: String!
+    $desc: String!
+    $notionContent: {
+      $title: String!,
+      $link: String
+    },
+  ) {
+    createContent(
+      contentInput: {
+        moduleId: $moduleId,
+        number: $number,
+        title: $title,
+        desc: $desc
+        notionContent: $notionContent
+      }
+      ) 
+      {
+        #Get User Info
+        number,
+        title,
+        desc,
+        completed,
+        notionContent,
     }
   }
 `;

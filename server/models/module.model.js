@@ -5,22 +5,7 @@ const contentSchema = {
     title: String,
     desc: String,
     completed: Boolean,
-    notionContent: {
-        title: String,
-        link: String
-    },
-    ideContent: {
-        title: String,
-        answer: String,
-        question: String,
-        testCase: [
-            {
-                input: String,
-                output: String
-            }
-        ],
-        solution: String
-    },
+    notionContent: String,
     createdAt: String
 }
 
