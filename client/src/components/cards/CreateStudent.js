@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 
 const theme = createTheme();
 
-const RegisterCard = () => {
+const CreateStudent = () => {
     const programCode = useSelector(state => state.user.userPrograms[0].programCode)
 
     const [errors, setErrors] = useState({});
@@ -259,4 +259,4 @@ const RegisterCard = () => {
     );
 }
 
-export default RegisterCard
+export default CreateStudent

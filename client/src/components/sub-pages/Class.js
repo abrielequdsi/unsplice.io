@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Components
 import ClassCard from '../cards/ClassCard';
-import RegisterCard from '../cards/RegisterCard';
+import CreateStudent from '../cards/CreateStudent';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_CLASSMATES } from '../../utils/graphql'
@@ -67,7 +67,7 @@ const Class = () => {
                     <Grid item xs={12}>
                         <Grid container spacing={2} sx={{ p: 2, }}>
                             <Paper sx={{ p: 2, m: 'auto' }}>
-                                <RegisterCard />
+                                <CreateStudent />
                             </Paper>
                         </Grid>
                     </Grid>

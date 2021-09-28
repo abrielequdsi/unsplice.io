@@ -89,6 +89,7 @@ const typeDefs = gql`
 
     }
     input ModuleInput {
+        programId: ID!
         name: String!
         moduleCode: String!
         desc: String!

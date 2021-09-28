@@ -15,7 +15,7 @@ const ClassCard = ({ userInfo }) => {
         <Card sx={{ minWidth: 275 }} >
             {/* sx={{ alignItems: 'center' }} */}
             <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ marginLeft: 'auto', marginRight: 'auto', mt: 1.5 }} />
+                <Avatar alt="Remy Sharp" src={userInfo.picture} sx={{ marginLeft: 'auto', marginRight: 'auto', mt: 1.5 }} />
                 <Typography variant="h6" component="div" sx={{ mt: 2, mb: 0.5 }} style={{ textTransform: 'capitalize' }}>
                     {userInfo.firstName} {userInfo.lastName}
                 </Typography>

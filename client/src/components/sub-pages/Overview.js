@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 // Components
 import OverviewCard from '../cards/OverviewCard';
+import CreateModule from '../cards/CreateModule';
 // Gql
 import { useQuery } from "@apollo/client";
 import { GET_MODULE_LIST } from '../../utils/graphql';
@@ -13,7 +14,7 @@ import { GET_MODULE_LIST } from '../../utils/graphql';
 import { useSelector } from 'react-redux';
 
 const Overview = () => {
-    const userPrograms = useSelector(state => state.user.userPrograms);
+    const { userPrograms, userInfo } = useSelector(state => state.user);
 
     const { loading, data } = useQuery(GET_MODULE_LIST, {
         variables: {
@@ -52,8 +53,26 @@ const Overview = () => {
                         {moduleList}
                     </Grid>
                 </Grid>
-
             </Grid>
+            {
+                (userInfo.role === 'teacher')
+                &&
+                (<Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Grid container spacing={2} sx={{ p: 2, }}>
+                            <Paper sx={{ p: 2, m: 'auto' }}>
+                                <CreateModule />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Grid>)
+            }
+
         </Container>
     )
 }

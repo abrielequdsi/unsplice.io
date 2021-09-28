@@ -155,3 +155,28 @@ export const REGISTER_STUDENT = gql`
     }
   }
 `;
+
+export const CREATE_MODULE = gql`
+  mutation NewModule(
+    $name: String!
+    $moduleCode: String!
+    $desc: String!
+    $programId: ID!
+  ) {
+    createModule(
+      moduleInput: {
+        programId: $programId,
+        name: $name,
+        moduleCode: $moduleCode,
+        desc: $desc
+      }
+      ) 
+      {
+        #Get User Info
+        name,
+        moduleCode,
+        desc,
+        progress
+    }
+  }
+`;
