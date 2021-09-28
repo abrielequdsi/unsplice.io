@@ -18,7 +18,7 @@ const MainListItems = () => {
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="Dashboard" />
+                <ListItemText primary="Overview" />
             </ListItem>
             <ListItem button onClick={() => dispatch(classPage())} >
                 <ListItemIcon>

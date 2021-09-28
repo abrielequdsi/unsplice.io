@@ -2,7 +2,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import LogoutIcon from '@mui/icons-material/Logout';
+// Component
+import Profile from './Profile.js'
 // mui styled
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
@@ -34,7 +35,6 @@ const StyledAppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== '
 
 const AppBar = ({ open, toggleDrawer }) => {
     const currPage = useSelector(state => state.subPage);
-    const dispatch = useDispatch();
 
     return (
         <StyledAppBar position="absolute" open={open}>
@@ -65,20 +65,10 @@ const AppBar = ({ open, toggleDrawer }) => {
                 >
                     {currPage.current.toLowerCase()}
                 </Typography>
-                <IconButton color="inherit" sx={{ cursor: 'pointer' }} onClick={() => dispatch(logout())}>
-                    <LogoutIcon />
-                    <Typography
-                        component="h1"
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                        sx={{ flexGrow: 1, ml: 1.5 }}
-                    >
-                        Logout
-                    </Typography>
-                </IconButton>
+
+                <Profile />
             </Toolbar>
-        </StyledAppBar>
+        </StyledAppBar >
     )
 }
 
