@@ -57,7 +57,7 @@ const ProgramChange = () => {
                             <Menu {...bindMenu(popupState)}>
                                 {userPrograms.slice(1).map((userProgram, index) => {
                                     return (
-                                        <MenuItem onClick={popupState.close} sx={{ width: '170px' }} key={userProgram.id}  >{userProgram.programCode}</MenuItem>
+                                        <MenuItem onClick={popupState.close} sx={{ width: '170px' }} key={userProgram.id}  >{userProgram.programCode.toUpperCase()}</MenuItem>
                                     )
                                 })}
                             </Menu>

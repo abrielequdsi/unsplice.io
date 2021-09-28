@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 // Components
 import OverviewCard from '../cards/OverviewCard';
 import CreateModule from '../cards/CreateModule';
@@ -45,11 +46,30 @@ const Overview = () => {
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                         {/* Here */}
+                        <Container maxWidth="sm">
+                            <Typography
+                                component="h3"
+                                variant="h4"
+                                align="center"
+                                color="text.primary"
+                                gutterBottom
+                            >
+                                {userPrograms[0].name}
+                            </Typography>
+                            <Typography variant="h7" align="center" color="secondary">
+                                {userPrograms[0].desc}
+                            </Typography>
 
+                        </Container>
                     </Paper>
                 </Grid>
+                <Grid item xs={12} sx={{ ml: 1 }}>
+                    <Typography variant="h7 text" color="text.secondary" align="center">
+                        Program Overview:
+                    </Typography>
+                </Grid>
                 <Grid item xs={12}>
-                    <Grid container spacing={2} sx={{ p: 2, }}>
+                    <Grid container spacing={3} sx={{ p: 2, pl: 0, pr: 0 }}>
                         {moduleList}
                     </Grid>
                 </Grid>
