@@ -40,7 +40,7 @@ module.exports = {
             // Handle user data
             const user = await User.findOne({ email });
 
-            // Handle username
+            // Handle userprogramCodes
             if (!user) {
                 // throw new Error("User not found")
                 errors.general = "User not found";
@@ -73,7 +73,7 @@ module.exports = {
             }
         },
         createUser: async (_, args, context, info) => {
-            const { email, password, confirmPassword, firstName, lastName, institution, role, programCode, picture } = args.registerInput;
+            const { email, password, confirmPassword, firstprogramCodes, lastprogramCodes, institution, role, programCode, picture } = args.registerInput;
             const { github, linkedin, instagram, website } = args.registerInput.socialLinks;
 
             // Validate user data
@@ -87,7 +87,7 @@ module.exports = {
             if (user) {
                 throw new UserInputError('Email is taken', {
                     errors: {
-                        username: 'This email is taken'
+                        userprogramCodes: 'This email is taken'
                     }
                 })
             }
@@ -96,8 +96,8 @@ module.exports = {
             const newUser = new User({
                 email,
                 password,
-                firstName,
-                lastName,
+                firstprogramCodes,
+                lastprogramCodes,
                 institution,
                 role,
                 picture,
@@ -114,6 +114,26 @@ module.exports = {
 
             // Return User Info
             return res
+        },
+        swapProgram: async (_, { userId, swapIndex }) => {
+            let swappedIndex = "programCodes." + swapIndex.toString()
+            console.log(swappedIndex)
+
+            const user = await User.findById(userId)
+            const programCodes = user.programCodes
+            console.log(programCodes)
+            // [programCodes[0], programCodes[swapIndex]] = [programCodes[swapIndex], programCodes[0]]
+            let b = programCodes[0];
+            programCodes[0] = programCodes[swapIndex];
+            programCodes[swapIndex] = b;
+
+            console.log(programCodes)
+
+            const userSwapProgram = await User.findOneAndUpdate({ _id: userId }, {
+                programCodes
+            });
+
+            return userSwapProgram
         }
     }
 }

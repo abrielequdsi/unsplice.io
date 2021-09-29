@@ -203,3 +203,13 @@ export const CREATE_CONTENT = gql`
 //     }
 //   }
 // `
+
+export const SWAP_PROGRAM = gql`
+  mutation swapProgram ($userId:ID!, $swapIndex: Int!){
+    swapProgram(userId: $userId, swapIndex: $swapIndex){
+      firstName,
+      lastName,
+      programCodes
+    }
+  }
+`

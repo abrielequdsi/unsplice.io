@@ -8,8 +8,7 @@ import Profile from './Profile.js'
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 // redux
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/actions/user.action'
+import { useSelector } from 'react-redux';
 
 
 const drawerWidth = 240;

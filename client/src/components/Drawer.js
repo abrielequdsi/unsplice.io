@@ -1,5 +1,6 @@
 import Toolbar from '@mui/material/Toolbar';
 import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // mui styled
@@ -8,6 +9,7 @@ import MuiDrawer from '@mui/material/Drawer';
 // Components
 import MainListItems from './list-item/MainList';
 import SecondaryListItems from './list-item/SecondList';
+import ProgramChange from './ProgramChange.js'
 
 const drawerWidth = 240;
 
@@ -48,6 +50,9 @@ const Drawer = ({ toggleDrawer, open }) => {
                     px: [1],
                 }}
             >
+                <Box>
+                    <ProgramChange />
+                </Box>
                 <IconButton onClick={toggleDrawer}>
                     <ChevronLeftIcon />
                 </IconButton>

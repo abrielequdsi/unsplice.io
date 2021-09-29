@@ -70,7 +70,7 @@ const typeDefs = gql`
         createModule(moduleInput: ModuleInput): Module!
         createUser(registerInput: RegisterInput): User!
         createContent(contentInput: ContentInput): Content!
-
+        swapProgram(userId: ID!, swapIndex: Int!): User!
     }
     input ModuleInput {
         programId: ID!
