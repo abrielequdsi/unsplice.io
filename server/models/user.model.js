@@ -12,10 +12,10 @@ const userSchema = new Schema({
     instagram: String,
     github: String,
     linkedin: String,
-    website: String
+    website: String,
   },
   programCodes: [String],
-  cratedAt: String
-})
+  createdAt: String,
+});
 
 module.exports = model('User', userSchema);
