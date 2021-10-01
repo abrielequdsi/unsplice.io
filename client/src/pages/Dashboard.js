@@ -3,35 +3,36 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 // Components
-import AppBar from '../components/AppBar.js'
-import Drawer from '../components/Drawer.js'
-import SubPage from '../components/SubPage.js'
-import Copyright from '../components/Copyright'
+import AppBar from '../components/AppBar.js';
+import Drawer from '../components/Drawer.js';
+import SubPage from '../components/SubPage.js';
+
+// check if copyright is used or not
+import Copyright from '../components/Copyright';
 
 const mdTheme = createTheme();
 
 const DashboardContent = () => {
+  const [open, setOpen] = useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
 
-    const [open, setOpen] = useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
-
-    return (
-        <ThemeProvider theme={mdTheme}>
-            <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
-                <AppBar open={open} toggleDrawer={toggleDrawer} />
-                <Drawer open={open} toggleDrawer={toggleDrawer} />
-                <SubPage />
-            </Box>
-            {/* <Copyright sx={{ pt: 4 }} /> */}
-        </ThemeProvider>
-    );
-}
+  return (
+    <ThemeProvider theme={mdTheme}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar open={open} toggleDrawer={toggleDrawer} />
+        <Drawer open={open} toggleDrawer={toggleDrawer} />
+        <SubPage />
+      </Box>
+      {/* <Copyright sx={{ pt: 4 }} /> */}
+    </ThemeProvider>
+  );
+};
 
 const Dashboard = () => {
-    return <DashboardContent />;
-}
+  return <DashboardContent />;
+};
 
 export default Dashboard;
