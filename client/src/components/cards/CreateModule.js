@@ -134,6 +134,7 @@ const CreateModule = () => {
               type="submit"
               fullWidth
               variant="contained"
+              disabled={!input.name || !input.moduleCode || !input.desc}
               sx={{ mt: 3, mb: 2 }}
             >
               Create
