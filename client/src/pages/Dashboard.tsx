@@ -8,7 +8,7 @@ import Drawer from '../components/Drawer.js';
 import SubPage from '../components/SubPage.js';
 
 // check if copyright is used or not
-import Copyright from '../components/Copyright';
+//import Copyright from '../components/Copyright';
 
 const mdTheme = createTheme();
 
