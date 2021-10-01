@@ -8,12 +8,12 @@ export const classPage = () => ({
   type: CLASS,
 });
 
-export const modulePage = (moduleId) => ({
+export const modulePage = (moduleId: any) => ({
   type: MODULE,
   payload: moduleId,
 });
 
-export const contentPage = (contentId) => ({
+export const contentPage = (contentId: any) => ({
   type: CONTENT,
   payload: contentId,
 });

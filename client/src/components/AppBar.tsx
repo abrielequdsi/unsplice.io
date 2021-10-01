@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 // redux
 import { useSelector } from 'react-redux';
+import {State} from './../clientTypes'
 
 
 const drawerWidth = 240;
@@ -32,11 +33,11 @@ const StyledAppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== '
 })
 )
 
-const AppBar = ({ open, toggleDrawer }) => {
-    const currPage = useSelector(state => state.subPage);
+const AppBar = (props: { toggleDrawer: any, open : any }) => {
+    const currPage = useSelector(state: State => state.subPage);
 
     return (
-        <StyledAppBar position="absolute" open={open}>
+        <StyledAppBar position="absolute" open={props.open}>
             <Toolbar
                 sx={{
                     pr: '24px', // keep right padding when drawer closed
@@ -46,10 +47,10 @@ const AppBar = ({ open, toggleDrawer }) => {
                     edge="start"
                     color="inherit"
                     aria-label="open drawer"
-                    onClick={toggleDrawer}
+                    onClick={() => props.toggleDrawer}
                     sx={{
                         marginRight: '36px',
-                        ...(open && { display: 'none' }),
+                        ...(props.open && { display: 'none' }),
                     }}
                 >
                     <MenuIcon />

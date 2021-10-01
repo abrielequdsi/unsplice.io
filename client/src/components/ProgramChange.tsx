@@ -22,9 +22,11 @@ const ProgramChange = () => {
     },
     onError(err) {
       console.log(err.message);
-      setErrors(err.graphQLErrors[0].extensions.errors);
+      // previous version: setErrors(err.graphQLErrors[0].extensions.exception.errors)
+      setErrors(err && err.graphQLErrors[0].extensions ? err.graphQLErrors[0].extensions.errors:{});
     },
   });
+
 
   // const handleClick = (swapIndex: any) => {
   //   console.log('swapp', {

@@ -10,8 +10,15 @@ export interface State {
 }
 
 export interface User {
-  userInfo: [];
+  userInfo: userInfo;
   userPrograms: any[];
+}
+
+export interface userInfo {
+  picture: string | undefined;
+  firstName: string,
+  lastName: string,
+  role: string,
 }
 
 export interface Subpage {

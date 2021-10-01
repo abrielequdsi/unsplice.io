@@ -10,15 +10,17 @@ import Popper from '@mui/material/Popper';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/actions/user.action';
+import { State } from '../clientTypes';
+
 
 const Profile = () => {
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const userInfo = useSelector((state: State) => state.user.userInfo);
   const dispatch = useDispatch();
   //
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event: { currentTarget: React.SetStateAction<null>; }) => {
     setAnchorEl(event.currentTarget);
     setOpen((previousOpen) => !previousOpen);
   };
@@ -40,7 +42,7 @@ const Profile = () => {
         <Avatar
           alt={userInfo.firstName.toUpperCase()}
           src={userInfo.picture}
-          onClick={handleClick}
+          onClick={()=>handleClick}
           sx={{ cursor: 'pointer' }}
         />
       </Box>

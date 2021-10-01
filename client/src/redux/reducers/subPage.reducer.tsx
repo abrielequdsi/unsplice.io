@@ -7,7 +7,7 @@ const initialState = {
   id: null,
 };
 
-const subPage = (state = initialState, action) => {
+const subPage = (state = initialState, action: any) => {
   switch (action.type) {
     case OVERVIEW:
       return {
