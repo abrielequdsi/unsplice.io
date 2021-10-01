@@ -29,8 +29,7 @@
     "build": "react-scripts build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
