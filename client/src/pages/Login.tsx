@@ -102,6 +102,8 @@ const Login = (props: { history: string[] }) => {
               Sign In
             </Button>
 
+            {/* how is it the ts improvable*/}
+
             {Object.keys(errors).length > 0 &&
               Object.values(errors).map((value) => (
                 <Alert severity="error" key={value as Key | null | undefined} sx={{ mb: 1 }}>
