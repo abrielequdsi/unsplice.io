@@ -1,7 +1,7 @@
 export interface Token {
   exp: number;
   userInfo: {};
-  userPrograms: [];
+  userPrograms: any[];
 }
 
 export interface State {
@@ -11,7 +11,7 @@ export interface State {
 
 export interface User {
   userInfo: [];
-  userPrograms: [];
+  userPrograms: any[];
 }
 
 export interface Subpage {
