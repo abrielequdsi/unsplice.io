@@ -3,40 +3,49 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import CircularProgress from './CircularProgress'
+import CircularProgress from './CircularProgress';
 
-
-const ClassCard = ({ module: { id, name, desc, moduleCode, progress } }) => {
-    return (
-        <Card sx={{ maxWidth: 345 }}>
-            {/* <CardMedia
+const OverviewCard = ({ module: { name, desc, moduleCode, progress } }) => {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      {/* <CardMedia
                 component="img"
                 height="140"
                 image="/static/images/cards/contemplative-reptile.jpg"
                 alt="green iguana"
             /> */}
-            <CardContent>
-                <Box sx={{ display: 'flex' }}>
-                    <Box sx={{ pt: 1 }}>
-                        <CircularProgress value={progress} />
-                    </Box>
-                    <Container>
-                        {/* sx={{ fontSize: 14 }}  */}
-                        <Typography gutterBottom variant="h7" component="div">
-                            {name}
-                        </Typography>
-                        <Typography gutterBottom variant="subtitle2" component="div" style={{ textTransform: 'capitalize' }}>
-                            {moduleCode}
-                        </Typography>
-                    </Container>
-                </Box>
+      <CardContent>
+        <Box sx={{ display: 'flex' }}>
+          <Box sx={{ pt: 1 }}>
+            <CircularProgress value={progress} />
+          </Box>
+          <Container>
+            {/* sx={{ fontSize: 14 }}  */}
+            <Typography
+              data-testid="title-test"
+              gutterBottom
+              variant="h7"
+              component="div"
+            >
+              {name}
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="subtitle2"
+              component="div"
+              style={{ textTransform: 'capitalize' }}
+            >
+              {moduleCode}
+            </Typography>
+          </Container>
+        </Box>
 
-                <Typography variant="caption" color="text.secondary">
-                    {desc}
-                </Typography>
-            </CardContent>
-        </Card>
-    );
-}
+        <Typography variant="caption" color="text.secondary">
+          {desc}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
 
-export default ClassCard
+export default OverviewCard;
