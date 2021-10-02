@@ -5,14 +5,39 @@ import ClassCard from '../components/cards/ClassCard';
 import Class from '../components/sub-pages/Class';
 import { userInfo } from './mocks';
 import { students } from './mocks';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
-test('class card should display student institution', async () => {
-  const classCard = render(
-    <StaticRouter>
-      <ClassCard userInfo={userInfo} />
-    </StaticRouter>,
-  );
+describe('Classmates', () => {
+  test('ClassCard should display student institution', async () => {
+    const classCard = render(
+      <StaticRouter>
+        <ClassCard userInfo={userInfo} />
+      </StaticRouter>,
+    );
 
-  const classcard = await classCard.findByTestId('classcard-test');
-  expect(classcard.textContent).toMatch('University of Tests');
+    const card = await classCard.findByTestId('institution-test');
+    expect(card.textContent).toMatch('University of Tests');
+  });
+
+  test('Individual ClassCard renders', () => {
+    const div = document.createElement('div');
+    render(<ClassCard userInfo={userInfo} />, div);
+  });
+
+  //TODO: integrate with redux
+  // test('Class heading renders', () => {
+  //   const initialState = [userInfo, userInfo];
+  //   const mockStore = configureStore();
+  //   let store, wrapper;
+
+  //   store = mockStore(initialState);
+  //   const screen = render(
+  //     <Provider store={store}>
+  //       <Class />
+  //     </Provider>,
+  //   );
+
+  //   screen.getByTestId(/Class/);
+  // });
 });

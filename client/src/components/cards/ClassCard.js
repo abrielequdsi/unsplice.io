@@ -29,7 +29,7 @@ const ClassCard = ({ userInfo }) => {
           {userInfo.firstName} {userInfo.lastName}
         </Typography>
         <Typography
-          data-testid="classcard-test"
+          data-testid="institution-test"
           variant="subtitle"
           component="div"
           sx={{ mb: 2 }}
