@@ -1,5 +1,7 @@
 import subPageReducer from '../redux/reducers/subPage.reducer';
+import userReducer from '../redux/reducers/user.reducer';
 import { OVERVIEW, CLASS, MODULE, CONTENT } from '../redux/actions/actionTypes';
+import { LOGIN, LOGOUT } from '../redux/actions/actionTypes';
 
 describe('sub-page reducer', () => {
   it('Should return the initial sub-page state', () => {
@@ -56,5 +58,40 @@ describe('sub-page reducer', () => {
         },
       ),
     ).toEqual({ current: CONTENT, id: 'content' });
+  });
+});
+
+describe('user reducer', () => {
+  it('Should return the initial user state', () => {
+    expect(userReducer(undefined, {})).toEqual({
+      userInfo: null,
+      userPrograms: [],
+    });
+  });
+
+  it('Should handle LOGIN', () => {
+    expect(
+      userReducer(
+        { userInfo: null, userPrograms: [] },
+        {
+          type: 'LOGIN',
+          payload: {
+            userInfo: { test: 'user' },
+            userPrograms: ['TEST123'],
+          },
+        },
+      ),
+    ).toEqual({ userInfo: { test: 'user' }, userPrograms: ['TEST123'] });
+  });
+
+  it('Should handle LOGOUT', () => {
+    expect(
+      userReducer(
+        { userInfo: null, userPrograms: [] },
+        {
+          type: 'LOGOUT',
+        },
+      ),
+    ).toEqual({ user: null, userPrograms: [] });
   });
 });
