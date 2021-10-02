@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AuthRoute from './utils/AuthRoute.js';
+import AuthRoute from './utils/AuthRoute';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard.js';
+import Dashboard from './pages/Dashboard';
 
 const App: React.FC = () => {
   return (

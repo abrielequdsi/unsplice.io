@@ -29,31 +29,32 @@ const Login = (props: { history: string[] }) => {
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(proxy, result) {
-      //console.log(result);
+      console.log('🚀🚀🚀', result);
       dispatch(login(result.data.login));
       props.history.push('/');
     },
     onError(err: any) {
-      //console.log(err);
-      setErrors(err.graphQLErrors[0].extensions.errors);
+      console.log(err);
+      console.log(err.graphQLErrors[0].extensions.errors);
+      //setErrors(err.graphQLErrors[0].extensions.errors);
     },
   });
 
-  const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
+  const handleSubmit = async (event: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    loginUser({
+    await loginUser({
       variables: {
         email: data.get('email'),
         password: data.get('password'),
       },
     });
 
-    // console.log({
-    //     email: data.get('email'),
-    //     password: data.get('password'),
-    // });
+    console.log('🚀', {
+      email: data.get('email'),
+      password: data.get('password'),
+    });
   };
 
   return (
@@ -103,11 +104,13 @@ const Login = (props: { history: string[] }) => {
             </Button>
 
             {/* how is it the ts improvable*/}
+            {console.log('🚀error in login', errors)}
 
             {Object.keys(errors).length > 0 &&
               Object.values(errors).map((value) => (
                 <Alert severity="error" key={value as Key | null | undefined} sx={{ mb: 1 }}>
                   {value as ReactNode}
+                  {console.log('🚀')}
                 </Alert>
               ))}
           </Box>

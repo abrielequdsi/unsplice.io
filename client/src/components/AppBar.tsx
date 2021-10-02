@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 // Component
-import Profile from './Profile.js'
+import Profile from './Profile'
 // mui styled
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';

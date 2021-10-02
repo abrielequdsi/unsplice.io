@@ -15,7 +15,7 @@ import { State } from '../clientTypes';
 const SubPage = () => {
   const currPage = useSelector((state: State) => state.subPage);
 
-  let content;
+  let content: {};
   if (currPage.current === OVERVIEW) {
     content = <Overview />;
   } else if (currPage.current === CLASS) {

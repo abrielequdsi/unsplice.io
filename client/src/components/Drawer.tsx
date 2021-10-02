@@ -13,31 +13,29 @@ import SecondaryListItems from './list-item/SecondList';
 
 const drawerWidth = 240;
 
-const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        '& .MuiDrawer-paper': {
-            position: 'relative',
-            whiteSpace: 'nowrap',
-            width: drawerWidth,
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            boxSizing: 'border-box',
-            ...(!open && {
-                overflowX: 'hidden',
-                transition: theme.transitions.create('width', {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.leavingScreen,
-                }),
-                width: theme.spacing(7),
-                [theme.breakpoints.up('sm')]: {
-                    width: theme.spacing(9),
-                },
-            }),
-        },
+const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
+  '& .MuiDrawer-paper': {
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
     }),
-)
+    boxSizing: 'border-box',
+    ...(!open && {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing(7),
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9),
+      },
+    }),
+  },
+}));
 
 // TODO ask tomorrow in a help request
 
@@ -46,30 +44,30 @@ const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 //   open: any,
 // }
 
-const Drawer = (props: { toggleDrawer: any, open : any }) => {
-    return (
-        <StyledDrawer variant="permanent" open={props.open}>
-            <Toolbar
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-end',
-                    px: [1],
-                }}
-            >
-                {/* <Box>
+const Drawer = (props: { toggleDrawer: any; open: any }) => {
+  return (
+    <StyledDrawer variant="permanent" open={props.open}>
+      <Toolbar
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          px: [1],
+        }}
+      >
+        {/* <Box>
                     <ProgramChange />
                 </Box> */}
-                <IconButton onClick={props.toggleDrawer}>
-                    <ChevronLeftIcon />
-                </IconButton>
-            </Toolbar>
-            <Divider />
-            <MainListItems />
-            <Divider />
-            <SecondaryListItems />
-        </StyledDrawer>
-    )
-}
+        <IconButton onClick={props.toggleDrawer}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </Toolbar>
+      <Divider />
+      <MainListItems />
+      <Divider />
+      <SecondaryListItems />
+    </StyledDrawer>
+  );
+};
 
 export default Drawer;

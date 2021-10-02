@@ -3,9 +3,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 // Components
-import AppBar from '../components/AppBar.js';
-import Drawer from '../components/Drawer.js';
-import SubPage from '../components/SubPage.js';
+import AppBar from '../components/AppBar';
+import Drawer from '../components/Drawer';
+import SubPage from '../components/SubPage';
 
 // check if copyright is used or not
 //import Copyright from '../components/Copyright';
