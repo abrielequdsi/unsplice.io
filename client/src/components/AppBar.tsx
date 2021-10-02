@@ -16,7 +16,8 @@ const drawerWidth = 240;
 
 
 
-const StyledAppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open', })(({ theme, open }) => ({
+const StyledAppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open', })
+<{open: boolean}>(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -33,8 +34,8 @@ const StyledAppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== '
 })
 )
 
-const AppBar = (props: { toggleDrawer: any, open : any }) => {
-    const currPage = useSelector(state: State => state.subPage);
+const AppBar = (props: { toggleDrawer: any, open : boolean }) => {
+    const currPage = useSelector((state: State) => state.subPage);
 
     return (
         <StyledAppBar position="absolute" open={props.open}>

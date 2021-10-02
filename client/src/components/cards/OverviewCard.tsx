@@ -4,9 +4,10 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CircularProgress from './CircularProgress'
+import {Module} from '../../clientTypes'
 
 
-const ClassCard = ({ module: { id, name, desc, moduleCode, progress } }) => {
+const ClassCard = (props: { module: Module }) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
             {/* <CardMedia
@@ -18,21 +19,21 @@ const ClassCard = ({ module: { id, name, desc, moduleCode, progress } }) => {
             <CardContent>
                 <Box sx={{ display: 'flex' }}>
                     <Box sx={{ pt: 1 }}>
-                        <CircularProgress value={progress} />
+                        <CircularProgress value={props.module.progress} />
                     </Box>
                     <Container>
                         {/* sx={{ fontSize: 14 }}  */}
-                        <Typography gutterBottom variant="h7" component="div">
-                            {name}
+                        <Typography gutterBottom variant="h6" component="div">
+                            {props.module.name}
                         </Typography>
                         <Typography gutterBottom variant="subtitle2" component="div" style={{ textTransform: 'capitalize' }}>
-                            {moduleCode}
+                            {props.module.moduleCode}
                         </Typography>
                     </Container>
                 </Box>
 
                 <Typography variant="caption" color="text.secondary">
-                    {desc}
+                    {props.module.desc}
                 </Typography>
             </CardContent>
         </Card>

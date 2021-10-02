@@ -2,8 +2,8 @@ import React from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+//import CircularProgress from '@mui/material/CircularProgress';
+//import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '../cards/LinearProgress';
 // Components
@@ -15,11 +15,13 @@ import { useQuery } from "@apollo/client";
 import { GET_MODULE } from '../../utils/graphql';
 // redux
 import { useSelector } from 'react-redux';
+import { State } from '../../clientTypes';
+
 
 const Module = () => {
 
-    const moduleId = useSelector(state => state.subPage.id)
-    const { userInfo } = useSelector(state => state.user);
+    const moduleId = useSelector(((state : State)  => state.subPage.id));
+    const { userInfo } = useSelector((state : State) => state.user);
 
     const { loading, data } = useQuery(GET_MODULE, {
         variables: {
@@ -28,42 +30,43 @@ const Module = () => {
     })
 
     let module;
-    if (loading) {
+    // if (loading) {
+    //     module = (
+    //         // <Box sx={{ display: 'flex', align: 'center' }}>
+    //         //     <CircularProgress />
+    //         // </Box>
+    //         )
+    // } else {
         module = (
-            <Box sx={{ display: 'flex', align: 'center' }}>
-                <CircularProgress />
-            </Box>)
-    } else {
-        module = (
-            data.getModule.contents.map((content) => {
+            data.getModule.contents.map((content:any) => {
                 return (
                     <ModuleCard key={content.id} content={content} moduleId={moduleId} />
                 )
             })
         )
-    }
+
 
     let moduleDesc;
-    if (loading) {
-        moduleDesc = (
-            <Box sx={{ ml: 'auto', mr: 'auto' }}>
-                <CircularProgress />
-            </Box>)
-    } else {
-        moduleDesc = (
-            <Box sx={{ align: 'center' }}>
-                <Typography component="div" variant="h7">
-                    {data.getModule.name}
-                </Typography>
-                <Typography variant="caption text" color="text.secondary">
-                    {data.getModule.desc}
-                </Typography>
-                <Box sx={{ mt: '10px' }} >
-                    <LinearProgress value={data.getModule.progress} />
-                </Box>
-            </Box>
-        )
-    }
+    // if (loading) {
+    //     moduleDesc = (
+    //         // <Box sx={{ ml: 'auto', mr: 'auto' }}>
+    //         //     <CircularProgress />
+    //         // </Box>)
+    // } else {
+    //     moduleDesc = (
+    //         <Box  sx={{ align: 'center' }}>
+    //             <Typography component="div" variant="h6">
+    //                 {data.getModule.name}
+    //             </Typography>
+    //             <Typography variant="caption text" color="text.secondary">
+    //                 {data.getModule.desc}
+    //             </Typography>
+    //             <Box sx={{ mt: '10px' }} >
+    //                 <LinearProgress value={data.getModule.progress} />
+    //             </Box>
+    //         </Box>
+    //     )
+    // }
 
 
     return (
@@ -75,7 +78,7 @@ const Module = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sx={{ ml: 1 }}>
-                    <Typography variant="h7 text" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                         Module Content:
                     </Typography>
                 </Grid>
@@ -103,6 +106,6 @@ const Module = () => {
             }
         </Container >
     )
-}
+};
 
 export default Module

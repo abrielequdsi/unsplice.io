@@ -1,6 +1,12 @@
+export interface InitialState {
+  userInfo: userInfo | null;
+  userPrograms: any[] ;
+}
+
+
 export interface Token {
   exp: number;
-  userInfo: {};
+  userInfo: userInfo;
   userPrograms: any[];
 }
 
@@ -24,4 +30,12 @@ export interface userInfo {
 export interface Subpage {
   current: string;
   id: string;
+}
+
+export interface Module {
+  name: string;
+  id: string | number;
+  desc : string ,
+  moduleCode: string | number  ,
+  progress: any,
 }

@@ -1,16 +1,25 @@
 import { LOGIN, LOGOUT } from '../actions/actionTypes';
 import jwtDecode from 'jwt-decode';
 
-import { Token } from '../../clientTypes';
+import { Token, InitialState } from '../../clientTypes';
 
-const initialState = {
+const initialState : InitialState = {
   userInfo: null,
   userPrograms: [],
 };
 
-if (localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode<Token>(localStorage.getItem('jwtToken'));
+let parse;
+const value = localStorage.getItem("jwtToken")
 
+if (typeof value === 'string') {
+    parse = JSON.parse(value)
+}
+
+// alternative solution
+// let parse=localStorage.getItem('jwtToken')
+
+if (parse) {
+  const decodedToken = jwtDecode<Token>(parse);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('jwtToken');
   } else {
