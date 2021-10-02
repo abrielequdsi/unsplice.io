@@ -1,7 +1,13 @@
 import subPageReducer from '../redux/reducers/subPage.reducer';
 import userReducer from '../redux/reducers/user.reducer';
-import { OVERVIEW, CLASS, MODULE, CONTENT } from '../redux/actions/actionTypes';
-import { LOGIN, LOGOUT } from '../redux/actions/actionTypes';
+import {
+  OVERVIEW,
+  CLASS,
+  MODULE,
+  CONTENT,
+  LOGIN,
+  LOGOUT,
+} from '../redux/actions/actionTypes';
 
 describe('sub-page reducer', () => {
   it('Should return the initial sub-page state', () => {
@@ -74,7 +80,7 @@ describe('user reducer', () => {
       userReducer(
         { userInfo: null, userPrograms: [] },
         {
-          type: 'LOGIN',
+          type: LOGIN,
           payload: {
             userInfo: { test: 'user' },
             userPrograms: ['TEST123'],
@@ -89,7 +95,7 @@ describe('user reducer', () => {
       userReducer(
         { userInfo: null, userPrograms: [] },
         {
-          type: 'LOGOUT',
+          type: LOGOUT,
         },
       ),
     ).toEqual({ user: null, userPrograms: [] });
