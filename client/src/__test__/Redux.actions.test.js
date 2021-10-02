@@ -1,19 +1,19 @@
-import * as actions from '../redux/actions/subPage.action';
-import userAction from '../redux/actions/user.action';
+import * as subPageActions from '../redux/actions/subPage.action';
+import * as userActions from '../redux/actions/user.action';
 
-describe('actions', () => {
+describe('Sub-page actions', () => {
   it('should create an action to switch to the overview', () => {
     const expectedAction = {
       type: 'OVERVIEW',
     };
-    expect(actions.overviewPage()).toEqual(expectedAction);
+    expect(subPageActions.overviewPage()).toEqual(expectedAction);
   });
 
   it('should create an action to switch to the class', () => {
     const expectedAction = {
       type: 'CLASS',
     };
-    expect(actions.classPage()).toEqual(expectedAction);
+    expect(subPageActions.classPage()).toEqual(expectedAction);
   });
 
   it('should create an action to switch to the module', () => {
@@ -22,7 +22,7 @@ describe('actions', () => {
       type: 'MODULE',
       payload: moduleId,
     };
-    expect(actions.modulePage(moduleId)).toEqual(expectedAction);
+    expect(subPageActions.modulePage(moduleId)).toEqual(expectedAction);
   });
   it('should create an action to switch to the content', () => {
     const contentId = ' CON123';
@@ -30,6 +30,24 @@ describe('actions', () => {
       type: 'CONTENT',
       payload: contentId,
     };
-    expect(actions.contentPage(contentId)).toEqual(expectedAction);
+    expect(subPageActions.contentPage(contentId)).toEqual(expectedAction);
+  });
+});
+
+describe('User actions', () => {
+  it('should create an action to login', () => {
+    const user = 'USER123';
+    const expectedAction = {
+      type: 'LOGIN',
+      payload: user,
+    };
+    expect(userActions.login(user)).toEqual(expectedAction);
+  });
+
+  it('should create an action to logout', () => {
+    const expectedAction = {
+      type: 'LOGOUT',
+    };
+    expect(userActions.logout()).toEqual(expectedAction);
   });
 });
