@@ -5,8 +5,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
+//Typescript
 import { Content } from '../../interfaces';
-
 // redux
 import { useDispatch } from 'react-redux';
 import { contentPage } from '../../redux/actions/subPage.action';
