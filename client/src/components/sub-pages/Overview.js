@@ -45,7 +45,6 @@ const Overview = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-            {/* Here */}
             <Container maxWidth="sm">
               <Typography
                 component="h3"
