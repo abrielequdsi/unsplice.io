@@ -4,16 +4,18 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CircularProgress from './CircularProgress';
+import { Module } from '../../interfaces';
 
-const OverviewCard = ({ module: { name, desc, moduleCode, progress } }) => {
+const OverviewCard = (props: { module: Module }) => {
+  const { name, desc, moduleCode, progress } = props.module;
   return (
     <Card sx={{ maxWidth: 345 }}>
       {/* <CardMedia
-                component="img"
-                height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-            /> */}
+        component="img"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+        alt="green iguana"
+      /> */}
       <CardContent>
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ pt: 1 }}>
@@ -24,7 +26,7 @@ const OverviewCard = ({ module: { name, desc, moduleCode, progress } }) => {
             <Typography
               data-testid="title-test"
               gutterBottom
-              variant="h7"
+              variant="h6"
               component="div"
             >
               {name}
