@@ -11,6 +11,11 @@ export interface User {
     linkedin: string;
     website: string;
   };
+  userPrograms: [{ id: string; programCode: string }];
+}
+
+export interface State {
+  user: User;
 }
 
 export interface MyToken {
