@@ -36,3 +36,8 @@ export interface Content {
   notionContent: string;
   createdAt: string;
 }
+
+export interface State {
+  user: User;
+  subPage: { current: string; id: string };
+}

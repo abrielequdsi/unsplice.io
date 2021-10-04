@@ -1,5 +1,5 @@
 import { LOGIN, LOGOUT } from '../actions/actionTypes';
-import jwt_decode, { JwtPayload } from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import { AnyAction } from 'redux';
 import { MyToken } from '../../interfaces';
 
