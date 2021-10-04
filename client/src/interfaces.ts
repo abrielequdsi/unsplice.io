@@ -26,3 +26,13 @@ export interface Module {
   desc: string;
   progress: number;
 }
+
+export interface Content {
+  id: string;
+  number: number;
+  title: string;
+  desc: string;
+  completed: boolean;
+  notionContent: string;
+  createdAt: string;
+}

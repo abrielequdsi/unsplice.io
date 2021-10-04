@@ -13,7 +13,7 @@ export const modulePage = (moduleId: string) => ({
   payload: moduleId,
 });
 
-export const contentPage = (contentId: string) => ({
+export const contentPage = (data: { moduleId: string; contentId: string }) => ({
   type: CONTENT,
-  payload: contentId,
+  payload: data,
 });
