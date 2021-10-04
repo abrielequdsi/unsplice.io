@@ -1,5 +1,13 @@
 const { model, Schema } = require('mongoose');
-const contentSchema = require('./content.model');
+
+const contentSchema = {
+  number: Number,
+  title: String,
+  desc: String,
+  completed: Boolean,
+  notionContent: String,
+  createdAt: String,
+};
 
 const moduleSchema = new Schema({
   name: String,

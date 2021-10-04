@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose');
 
-interface IUser {
+interface User {
   email: string;
   password: string;
   firstName: string;
@@ -18,7 +18,7 @@ interface IUser {
   createdAt: string;
 }
 
-const userSchema = new Schema({
+const userSchema: User = new Schema({
   email: { type: String },
   password: { type: String },
   firstName: { type: String },
@@ -36,4 +36,4 @@ const userSchema = new Schema({
   createdAt: String,
 });
 
-export default model('User', userSchema);
+module.exports = model('User', userSchema);
