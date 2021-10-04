@@ -1,4 +1,4 @@
-const { model, Schema } = require('mongoose');
+import { model, Schema } from 'mongoose';
 
 interface User {
   email: string;
@@ -18,7 +18,7 @@ interface User {
   createdAt: string;
 }
 
-const userSchema: User = new Schema({
+const userSchema = new Schema<User>({
   email: { type: String },
   password: { type: String },
   firstName: { type: String },
@@ -36,4 +36,4 @@ const userSchema: User = new Schema({
   createdAt: String,
 });
 
-module.exports = model('User', userSchema);
+module.exports = model<User>('User', userSchema);
