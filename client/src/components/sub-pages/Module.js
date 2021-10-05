@@ -19,8 +19,8 @@ import { useSelector } from 'react-redux';
 import { Content, State } from '../../interfaces';
 
 const Module = () => {
-  const moduleId = useSelector((state: State) => state.subPage.id);
-  const { userInfo } = useSelector((state: State) => state.user);
+  const moduleId = useSelector((state) => state.subPage.id);
+  const { userInfo } = useSelector((state) => state.user);
 
   const { loading, data } = useQuery(GET_MODULE, {
     variables: {
@@ -36,7 +36,7 @@ const Module = () => {
       </Box>
     );
   } else {
-    module = data.getModule.contents.map((content: Content) => {
+    module = data.getModule.contents.map((content) => {
       return (
         <ModuleCard key={content.id} content={content} moduleId={moduleId} />
       );
