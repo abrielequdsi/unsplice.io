@@ -11,6 +11,7 @@ export interface User {
     linkedin: string;
     website: string;
   };
+  userInfo: any;
 }
 
 export interface MyToken {
