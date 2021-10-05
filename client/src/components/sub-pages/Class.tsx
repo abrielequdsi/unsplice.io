@@ -4,6 +4,9 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+//Typescript
+import { User } from '../../interfaces';
+import { State } from '../../interfaces';
 // Components
 import ClassCard from '../cards/ClassCard';
 import CreateStudent from '../cards/CreateStudent';
@@ -14,7 +17,7 @@ import { GET_CLASSMATES } from '../../utils/graphql';
 import { useSelector } from 'react-redux';
 
 const Class = () => {
-  const { userPrograms, userInfo } = useSelector((state) => state.user);
+  const { userPrograms, userInfo } = useSelector((state: State) => state.user);
 
   const { loading, data } = useQuery(GET_CLASSMATES, {
     variables: {
@@ -30,7 +33,7 @@ const Class = () => {
       </Box>
     );
   } else {
-    classmates = data.getClassmates.map((user) => {
+    classmates = data.getClassmates.map((user: User) => {
       return (
         <Grid item key={user.id} xs={12} sm={6} md={4} sx={{ p: 2 }}>
           <ClassCard userInfo={user} />

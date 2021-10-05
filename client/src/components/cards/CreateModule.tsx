@@ -13,11 +13,14 @@ import { useMutation } from '@apollo/client';
 import { CREATE_MODULE } from '../../utils/graphql';
 // redux
 import { useSelector } from 'react-redux';
+import { State } from '../../interfaces';
 
 const theme = createTheme();
 
 const CreateModule = () => {
-  const programId = useSelector((state) => state.user.userPrograms[0].id);
+  const programId = useSelector(
+    (state: State) => state.user.userPrograms[0].id,
+  );
 
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
@@ -32,18 +35,22 @@ const CreateModule = () => {
     },
     onError(err) {
       console.log(err.message);
-      setErrors(err.graphQLErrors[0].extensions.errors);
+      setErrors(
+        err && err.graphQLErrors[0].extensions
+          ? err.graphQLErrors[0].extensions.errors
+          : {},
+      );
     },
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     // eslint-disable-next-line no-console
 
@@ -142,8 +149,8 @@ const CreateModule = () => {
 
             {Object.keys(errors).length > 0 &&
               Object.values(errors).map((value) => (
-                <Alert severity="error" key={value} sx={{ mb: 1 }}>
-                  {value}
+                <Alert severity="error" key={value as string} sx={{ mb: 1 }}>
+                  {value as string}
                 </Alert>
               ))}
           </Box>

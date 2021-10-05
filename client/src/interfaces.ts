@@ -1,4 +1,5 @@
 export interface User {
+  id: string;
   email: string;
   firstName: string;
   lastName: string;
@@ -11,6 +12,12 @@ export interface User {
     linkedin: string;
     website: string;
   };
+  userPrograms: Program[];
+  userInfo: any;
+}
+
+export interface State {
+  user: User;
   userInfo: any;
 }
 
@@ -21,7 +28,15 @@ export interface MyToken {
   userPrograms: any;
 }
 
+export interface Program {
+  id: string;
+  name: string;
+  programCode: string;
+  desc: string;
+}
+
 export interface Module {
+  id: string;
   name: string;
   moduleCode: string;
   desc: string;

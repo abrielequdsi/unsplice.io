@@ -5,6 +5,9 @@ import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+//Typescript
+import { Module } from '../../interfaces';
+import { State } from '../../interfaces';
 // Components
 import OverviewCard from '../cards/OverviewCard';
 import CreateModule from '../cards/CreateModule';
@@ -15,7 +18,7 @@ import { GET_MODULE_LIST } from '../../utils/graphql';
 import { useSelector } from 'react-redux';
 
 const Overview = () => {
-  const { userPrograms, userInfo } = useSelector((state) => state.user);
+  const { userPrograms, userInfo } = useSelector((state: State) => state.user);
 
   const { loading, data } = useQuery(GET_MODULE_LIST, {
     variables: {
@@ -31,7 +34,7 @@ const Overview = () => {
       </Box>
     );
   } else {
-    moduleList = data.getModuleList.map((module) => {
+    moduleList = data.getModuleList.map((module: Module) => {
       return (
         <Grid item key={module.id} xs={12} sm={6} md={4} sx={{ p: 2 }}>
           <OverviewCard module={module} />
@@ -55,14 +58,14 @@ const Overview = () => {
               >
                 {userPrograms[0].name}
               </Typography>
-              <Typography variant="h7" align="center" color="secondary">
+              <Typography variant="h6" align="center" color="secondary">
                 {userPrograms[0].desc}
               </Typography>
             </Container>
           </Paper>
         </Grid>
         <Grid item xs={12} sx={{ ml: 1 }}>
-          <Typography variant="h7 text" color="text.secondary" align="center">
+          <Typography variant="h6" color="text.secondary" align="center">
             Program Overview:
           </Typography>
         </Grid>
