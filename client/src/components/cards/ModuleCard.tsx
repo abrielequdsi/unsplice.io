@@ -17,8 +17,6 @@ const ModuleCard = (props: { moduleId: string; content: Content }) => {
 
   const dispatch = useDispatch();
 
-  const theme = useTheme();
-
   return (
     <Card sx={{ display: 'flex', mb: 2 }}>
       <CardContent sx={{ mt: 1.5, ml: 2 }}>

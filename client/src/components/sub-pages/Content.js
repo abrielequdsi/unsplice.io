@@ -15,6 +15,8 @@ import { NotionRenderer } from 'react-notion';
 import 'react-notion/src/styles.css';
 import 'prismjs/themes/prism-tomorrow.css'; // only needed for code highlighting
 
+import { State } from '../../interfaces';
+
 const Content = () => {
   const { moduleId, contentId } = useSelector((state) => state.subPage.id);
 

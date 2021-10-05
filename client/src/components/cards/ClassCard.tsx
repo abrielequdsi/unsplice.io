@@ -8,8 +8,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LanguageIcon from '@mui/icons-material/Language';
+import { User } from '../../interfaces';
 
-const ClassCard = ({ userInfo }) => {
+const ClassCard = (props: { userInfo: User }) => {
+  const { userInfo } = props;
   const { github, instagram, linkedin, website } = userInfo.socialLinks;
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -30,7 +32,7 @@ const ClassCard = ({ userInfo }) => {
         </Typography>
         <Typography
           data-testid="institution-test"
-          variant="subtitle"
+          variant="subtitle1"
           component="div"
           sx={{ mb: 2 }}
           color="text.secondary"
