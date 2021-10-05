@@ -9,7 +9,7 @@ import MuiDrawer from '@mui/material/Drawer';
 // Components
 import MainListItems from './list-item/mainList';
 import SecondaryListItems from './list-item/SecondList';
-import ProgramChange from './ProgramChange.js';
+import ProgramChange from './ProgramChange.tsx';
 
 const drawerWidth = 240;
 
@@ -41,7 +41,7 @@ const StyledDrawer = styled(MuiDrawer, {
 
 const Drawer = ({ toggleDrawer, open }) => {
   return (
-    <StyledDrawer variant='permanent' open={open}>
+    <StyledDrawer variant="permanent" open={open}>
       <Toolbar
         sx={{
           display: 'flex',
