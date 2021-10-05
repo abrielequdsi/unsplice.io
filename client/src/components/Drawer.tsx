@@ -39,7 +39,8 @@ const StyledDrawer = styled(MuiDrawer, {
   },
 }));
 
-const Drawer = ({ toggleDrawer, open }) => {
+const Drawer = (props: { toggleDrawer: () => void; open: boolean }) => {
+  const { toggleDrawer, open } = props;
   return (
     <StyledDrawer variant="permanent" open={open}>
       <Toolbar

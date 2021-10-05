@@ -2,8 +2,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+// Typescript
+import { State } from '../interfaces';
 // Component
-import Profile from './Profile.tsx';
+import Profile from './Profile';
 // mui styled
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
@@ -14,7 +16,7 @@ const drawerWidth = 240;
 
 const StyledAppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+})<{ open: boolean }>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -30,8 +32,9 @@ const StyledAppBar = styled(MuiAppBar, {
   }),
 }));
 
-const AppBar = ({ open, toggleDrawer }) => {
-  const currPage = useSelector((state) => state.subPage);
+const AppBar = (props: { toggleDrawer: () => void; open: boolean }) => {
+  const { toggleDrawer, open } = props;
+  const currPage = useSelector((state: State) => state.subPage);
 
   return (
     <StyledAppBar position="absolute" open={open}>
