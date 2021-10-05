@@ -9,7 +9,7 @@ import MuiDrawer from '@mui/material/Drawer';
 // Components
 import MainListItems from './list-item/mainList';
 import SecondaryListItems from './list-item/SecondList';
-import ProgramChange from './ProgramChange.tsx';
+import ProgramChange from './ProgramChange';
 
 const drawerWidth = 240;
 
