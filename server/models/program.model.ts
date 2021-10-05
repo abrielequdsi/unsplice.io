@@ -16,4 +16,4 @@ const programSchema = new Schema<Program>({
   createdAt: String,
 });
 
-module.exports = model<Program>('Program', programSchema);
+export default model<Program>('Program', programSchema);

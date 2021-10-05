@@ -2,7 +2,7 @@ const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
 
 const typeDefs = require('./graphql/typeDefs');
-const resolvers = require('./graphql/resolvers/index.resolver');
+import { resolvers } from './graphql/resolvers/index.resolver';
 const { MONGODB } = require('./config');
 
 const PORT = 5000;
