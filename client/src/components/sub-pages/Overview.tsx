@@ -58,7 +58,7 @@ const Overview = () => {
               >
                 {userPrograms[0].name}
               </Typography>
-              <Typography variant="h6" align="center" color="secondary">
+              <Typography variant="subtitle1" align="center" color="secondary">
                 {userPrograms[0].desc}
               </Typography>
             </Container>
