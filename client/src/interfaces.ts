@@ -19,6 +19,7 @@ export interface User {
 export interface State {
   user: User;
   userInfo: any;
+  subPage: any;
 }
 
 export interface MyToken {
@@ -51,9 +52,4 @@ export interface Content {
   completed: boolean;
   notionContent: string;
   createdAt: string;
-}
-
-export interface State {
-  user: User;
-  subPage: { current: string; id: string };
 }

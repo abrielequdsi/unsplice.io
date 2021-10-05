@@ -18,7 +18,9 @@ import 'prismjs/themes/prism-tomorrow.css'; // only needed for code highlighting
 import { State } from '../../interfaces';
 
 const Content = () => {
-  const { moduleId, contentId } = useSelector((state) => state.subPage.id);
+  const { moduleId, contentId } = useSelector(
+    (state: State) => state.subPage.id,
+  );
 
   const { loading, data } = useQuery(GET_CONTENT, {
     variables: {
@@ -39,6 +41,7 @@ const Content = () => {
       setNotionLoading(true);
       loadNotionContent(notionSlug)
         .then((res) => {
+          console.log('res.data', typeof res.data);
           setNotionPagedata(res.data);
         })
         .catch((err) => {
@@ -49,7 +52,7 @@ const Content = () => {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, notionPagedata);
+  }, notionPagedata as any); //notionPageData
 
   // Render Content
   let content;

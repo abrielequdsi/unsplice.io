@@ -5,10 +5,9 @@ import CircularProgress, {
 } from '@mui/material/CircularProgress';
 
 // Inspired by the former Facebook spinners.
-function FillerCircularProgress(props: any) {
+function FillerCircularProgress(props: { value: number }) {
   return (
     <Box sx={{ position: 'relative' }}>
-      {console.log('filler props', props)}
       <CircularProgress
         variant="determinate"
         sx={{
@@ -21,7 +20,7 @@ function FillerCircularProgress(props: any) {
         value={100}
       />
       <CircularProgress
-        variant="indeterminate"
+        variant="determinate"
         //disableShrink
         sx={{
           color: (theme) =>
@@ -41,11 +40,10 @@ function FillerCircularProgress(props: any) {
   );
 }
 
-const CircularProgressWithLabel = (props: any) => {
+const CircularProgressWithLabel = (props: { value: number }) => {
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      {console.log('props', props)}
-      <FillerCircularProgress {...props} variant="determinate" />
+      <FillerCircularProgress {...props} />
       <Box
         sx={{
           top: 0,

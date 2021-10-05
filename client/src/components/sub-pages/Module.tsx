@@ -31,7 +31,7 @@ const Module = () => {
   let module;
   if (loading) {
     module = (
-      <Box sx={{ display: 'flex', align: 'center' }}>
+      <Box sx={{ display: 'flex', align: 'center' } as any}>
         <CircularProgress />
       </Box>
     );
@@ -52,7 +52,7 @@ const Module = () => {
     );
   } else {
     moduleDesc = (
-      <Box sx={{ align: 'center' }}>
+      <Box sx={{ align: 'center' } as any}>
         <Typography component="div" variant="h6">
           {data.getModule.name}
         </Typography>

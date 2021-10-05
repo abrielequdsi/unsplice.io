@@ -16,8 +16,6 @@ if (localStorage.getItem('jwtToken')) {
     localStorage.removeItem('jwtToken');
   } else {
     initialState.userInfo = decodedToken.userInfo;
-    console.log('token', token);
-    console.log('decoded token', decodedToken);
     initialState.userPrograms = decodedToken.userPrograms.map(
       (userProgram: { _id: string; name: string; programCode: string }) => {
         return {
