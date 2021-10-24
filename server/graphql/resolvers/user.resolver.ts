@@ -1,5 +1,5 @@
-const User = require('../../models/user.model');
-const Program = require('../../models/program.model');
+import User from '../../models/user.model';
+import Program from '../../models/program.model';
 // Gql
 const { UserInputError } = require('apollo-server');
 // Auth & Session
@@ -9,10 +9,10 @@ const {
   validateRegisterInput,
 } = require('../../utils/validators');
 const jwt = require('jsonwebtoken');
-// TODO: Implement Bcrypt
+// TODO: Implement Bcrypt, fix all type 'any'
 
 // Jwt Helper function
-function generateToken(user, userPrograms) {
+function generateToken(user: any, userPrograms: any) {
   return jwt.sign(
     {
       userInfo: user,
@@ -23,16 +23,21 @@ function generateToken(user, userPrograms) {
   );
 }
 
-module.exports = {
+export default {
   Query: {
-    getClassmates: async (_, { programCode }) => {
+    getClassmates: async (_: any, { programCode }: any) => {
       // fetch classmates
       const classmates = await User.find({ programCodes: programCode });
       return classmates;
     },
   },
   Mutation: {
-    login: async (_, { email, password }, context, info) => {
+    login: async (
+      _: any,
+      { email, password }: any,
+      context: any,
+      info: any
+    ) => {
       // Validate user data
       const { errors, valid } = validateLoginInput(email, password);
       if (!valid) {
@@ -74,7 +79,7 @@ module.exports = {
         token: token,
       };
     },
-    createUser: async (_, args, context, info) => {
+    createUser: async (_: any, args: any, context: any, info: any) => {
       const {
         email,
         password,
@@ -132,12 +137,12 @@ module.exports = {
       // Return User Info
       return res;
     },
-    swapProgram: async (_, { userId, swapIndex }) => {
+    swapProgram: async (_: any, { userId, swapIndex }: any) => {
       let swappedIndex = 'programCodes.' + swapIndex.toString();
       console.log(swappedIndex);
 
       const user = await User.findById(userId);
-      const programCodes = user.programCodes;
+      const programCodes = user!.programCodes;
       console.log(programCodes);
       // [programCodes[0], programCodes[swapIndex]] = [programCodes[swapIndex], programCodes[0]]
       let b = programCodes[0];

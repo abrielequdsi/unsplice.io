@@ -39,7 +39,7 @@ const SecondaryListItems = () => {
       <List>
         <div>
           <ListSubheader inset>My Modules</ListSubheader>
-          {data.getModuleList.map((module: Module) => {
+          {data.getModuleList.map((module: any) => {
             return (
               <div
                 key={module.id}
