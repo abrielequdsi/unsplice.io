@@ -43,7 +43,7 @@ E-learning management system to help bridge online interaction between teacher a
 - Notion API
 
 <!-- INSTALLATION -->
-### Installation
+## Installation
 
 1. Clone the repo
    ```
