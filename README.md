@@ -42,6 +42,24 @@ E-learning management system to help bridge online interaction between teacher a
 
 - Notion API
 
+<!-- INSTALLATION -->
+### Installation
+
+1. Clone the repo
+   ```
+   git clone https://github.com/abrielequdsi/unsplice.io.git
+   ```
+2. Create an config.js file in the client folder and one in the server folder, using as template the .config.js example file
+3. Create a MongoDb database
+4. Install the packages running npm install both in the client and in the server folder
+5. Run the application:
+   ```
+   unsplice.io/client % npm start
+   ```
+   ```
+   unsplice.io/server % npm start start
+   ```
+
 
 <!-- CONTRIBUTING -->
 ## Contributing
