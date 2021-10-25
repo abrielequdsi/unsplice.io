@@ -4,136 +4,157 @@ const Program = require('../../models/program.model');
 const { UserInputError } = require('apollo-server');
 // Auth & Session
 const { SECRET_KEY } = require('../../config.js');
-const { validateLoginInput, validateRegisterInput } = require('../../utils/validators')
+const { validateLoginInput, validateRegisterInput } = require('../../utils/validators');
 const jwt = require('jsonwebtoken');
 // TODO: Implement Bcrypt
 
 // Jwt Helper function
 function generateToken(user, userPrograms) {
-    return jwt.sign({
-
-        userInfo: user,
-        userPrograms: userPrograms
-
-    }, SECRET_KEY, { expiresIn: '1h' });
+  return jwt.sign(
+    {
+      userInfo: user,
+      userPrograms: userPrograms,
+    },
+    SECRET_KEY,
+    { expiresIn: '1h' }
+  );
 }
-
 
 module.exports = {
-    Query: {
-        getClassmates: async (_, { programCode }) => {
-            // fetch classmates
-            const classmates = await User.find({ programCodes: programCode })
-            return classmates
-        }
+  Query: {
+    getClassmates: async (_, { programCode }) => {
+      // fetch classmates
+      const classmates = await User.find({ programCodes: programCode });
+      return classmates;
     },
-    Mutation: {
-        login: async (_, { email, password }, context, info) => {
+  },
+  Mutation: {
+    // context,info don't need to be passed
+    login: async (_, { email, password }, context, info) => {
+      //add a try catch
 
-            // Validate user data
-            const { errors, valid } = validateLoginInput(email, password);
-            if (!valid) {
-                // throw new Error({ errors })
-                throw new UserInputError('Input Error', { errors: errors })
-            }
+      // Validate user data
+      const { errors, valid } = validateLoginInput(email, password);
+      if (!valid) {
+        // throw new Error({ errors })
+        throw new UserInputError('Input Error', { errors: errors });
+      }
 
-            // Handle user data
-            const user = await User.findOne({ email });
+      // Handle user data
+      const user = await User.findOne({ email });
 
-            // Handle userprogramCodes
-            if (!user) {
-                // throw new Error("User not found")
-                errors.general = "User not found";
-                throw new UserInputError('User not found', { errors: errors })
-            }
+      // Handle userprogramCodes
+      if (!user) {
+        // throw new Error("User not found")
+        errors.general = 'User not found';
+        throw new UserInputError('User not found', { errors: errors });
+      }
 
-            // Handle password
-            if (password != user.password) {
-                // throw new Error("Wrong credentials")
-                errors.general = "Wrong credentials";
-                throw new UserInputError('Wrong credentials', { errors: errors })
-            }
+      // Handle password
+      if (password != user.password) {
+        // throw new Error("Wrong credentials")
+        errors.general = 'Wrong credentials';
+        throw new UserInputError('Wrong credentials', { errors: errors });
+      }
 
-
-            // Handle program data
-            const userPrograms = await Program.find({
-                programCode: {
-                    $in: user.programCodes
-                }
-            })
-
-            // jwt
-            const token = generateToken(user, userPrograms)
-
-            // Return User Info
-            return {
-                userInfo: user,
-                userPrograms: userPrograms,
-                token: token
-            }
+      // Handle program data
+      const userPrograms = await Program.find({
+        programCode: {
+          $in: user.programCodes,
         },
-        createUser: async (_, args, context, info) => {
-            const { email, password, confirmPassword, firstprogramCodes, lastprogramCodes, institution, role, programCode, picture } = args.registerInput;
-            const { github, linkedin, instagram, website } = args.registerInput.socialLinks;
+      });
 
-            // Validate user data
-            const { errors, valid } = validateRegisterInput(email, password, confirmPassword);
-            if (!valid) {
-                throw new UserInputError('Input Error', { errors: errors })
-            }
+      // jwt
+      const token = generateToken(user, userPrograms);
 
-            // Make sure email doesn't already exist
-            const user = await User.findOne({ email });
-            if (user) {
-                throw new UserInputError('Email is taken', {
-                    errors: {
-                        userprogramCodes: 'This email is taken'
-                    }
-                })
-            }
+      // Return User Info
+      return {
+        userInfo: user,
+        userPrograms: userPrograms,
+        token: token,
+      };
+    },
+    // context,info don't need to be passed
+    createUser: async (_, args, context, info) => {
+      const {
+        email,
+        password,
+        confirmPassword,
+        firstprogramCodes,
+        lastprogramCodes,
+        institution,
+        role,
+        programCode,
+        picture,
+      } = args.registerInput;
+      const { github, linkedin, instagram, website } = args.registerInput.socialLinks;
 
-            // Create user 
-            const newUser = new User({
-                email,
-                password,
-                firstprogramCodes,
-                lastprogramCodes,
-                institution,
-                role,
-                picture,
-                socialLinks: {
-                    instagram,
-                    github,
-                    linkedin,
-                    website,
-                },
-                programCodes: [programCode],
-                createdAt: new Date().toISOString()
-            });
-            const res = await newUser.save();
+      // add a try catch
 
-            // Return User Info
-            return res
+      // Validate user data
+      const { errors, valid } = validateRegisterInput(email, password, confirmPassword);
+      if (!valid) {
+        throw new UserInputError('Input Error', { errors: errors });
+      }
+
+      // Make sure email doesn't already exist
+      const user = await User.findOne({ email });
+      if (user) {
+        throw new UserInputError('Email is taken', {
+          errors: {
+            userprogramCodes: 'This email is taken',
+          },
+        });
+      }
+
+      // Create user
+      const newUser = new User({
+        email,
+        password,
+        firstprogramCodes,
+        lastprogramCodes,
+        institution,
+        role,
+        picture,
+        socialLinks: {
+          instagram,
+          github,
+          linkedin,
+          website,
         },
-        swapProgram: async (_, { userId, swapIndex }) => {
-            let swappedIndex = "programCodes." + swapIndex.toString()
-            console.log(swappedIndex)
+        programCodes: [programCode],
+        createdAt: new Date().toISOString(),
+      });
+      const res = await newUser.save();
 
-            const user = await User.findById(userId)
-            const programCodes = user.programCodes
-            console.log(programCodes)
-            // [programCodes[0], programCodes[swapIndex]] = [programCodes[swapIndex], programCodes[0]]
-            let b = programCodes[0];
-            programCodes[0] = programCodes[swapIndex];
-            programCodes[swapIndex] = b;
+      // Return User Info
+      return res;
+    },
+    swapProgram: async (_, { userId, swapIndex }) => {
+      let swappedIndex = 'programCodes.' + swapIndex.toString();
 
-            console.log(programCodes)
+      // remove console.log and check where it's used
 
-            const userSwapProgram = await User.findOneAndUpdate({ _id: userId }, {
-                programCodes
-            });
+      //console.log(swappedIndex)
 
-            return userSwapProgram
+      const user = await User.findById(userId);
+      const programCodes = user.programCodes;
+      console.log(programCodes);
+      // [programCodes[0], programCodes[swapIndex]] = [programCodes[swapIndex], programCodes[0]]
+      let b = programCodes[0];
+      programCodes[0] = programCodes[swapIndex];
+      programCodes[swapIndex] = b;
+
+      //console.log(programCodes)
+
+      const userSwapProgram = await User.findOneAndUpdate(
+        { _id: userId },
+        {
+          programCodes,
         }
-    }
-}
+      );
+
+      return userSwapProgram;
+    },
+  },
+};

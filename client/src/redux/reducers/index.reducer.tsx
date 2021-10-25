@@ -3,6 +3,6 @@ import user from './user.reducer';
 import subPage from './subPage.reducer';
 
 export default combineReducers({
-    user,
-    subPage
-})
+  user,
+  subPage,
+});
