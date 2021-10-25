@@ -4,7 +4,21 @@ E-learning management system to help bridge online interaction between teacher a
 
 ## Project Description
 
-unsplice.io is a one-stop E-Learning Platform or course management system (CMS) with aims to help educators create effective online education by helping them conceptualising various courses content, course structures, and curriculum.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/abrielequdsi/unsplice.io/blob/developement/main_logo.png">
+    <img src="main_logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">Unsplice.io</h3>
+
+  <p align="center">
+    unsplice.io is a one-stop E-Learning Platform or course management system (CMS) with aims to help educators create effective online education by helping them conceptualising various courses content, course structures, and curriculum.
+    <br />
+    <br />
+  </p>
+</div>
 
 ## Tech Stack
 
